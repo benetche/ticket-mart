@@ -1,0 +1,25 @@
+.centerDiv{
+    padding: 70px;
+    text-align: center;
+}
+.mainBanner{
+    width: 100%;
+    height: 304px;
+    background-color: #323232;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+}
+.textExplorar{
+    font-size: 2em;
+    font-weight: bold;
+}
+.bannersDiv{
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

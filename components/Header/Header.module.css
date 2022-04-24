@@ -1,0 +1,38 @@
+.header{
+    width: 100%;
+    background-color: #1C3041;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px 10px 30px;
+}
+/* Icone de menu */
+.menuicon{
+    color: #ffffff;
+    font-size: 2em;
+    padding: 0px 8px 0px 8px;
+}
+/* Icone de carrinho */
+.carticon{
+    color: #18F2B2;
+    font-size: 2em;
+    align-self: flex-end;
+    padding: 0px 8px 0px 8px;
+}
+/* Div envolvendo textos */
+.textDiv{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-left: 54px;
+}
+/* Textos clicaveis */
+.clickableText{
+    color: #ffffff;
+    font-size: 1.5em;
+    text-decoration: none;
+    padding: 0px 8px 0px 8px;
+}
+/* Div envolvendo logo e textos */
+.logoText{
+    display: flex;
+}

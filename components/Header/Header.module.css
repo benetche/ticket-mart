@@ -7,16 +7,22 @@
 }
 /* Icone de menu */
 .menuicon{
-    color: #ffffff;
+    color: var(--color-white);
     font-size: 2em;
     padding: 0px 8px 0px 8px;
 }
+.menuicon:hover{
+    color: var(--color-claret);
+}
 /* Icone de carrinho */
 .carticon{
-    color: #18F2B2;
+    color: var(--color-green);
     font-size: 2em;
     align-self: flex-end;
     padding: 0px 8px 0px 8px;
+}
+.carticon:hover{
+    color: var(--color-claret)
 }
 /* Div envolvendo textos */
 .textDiv{
@@ -26,12 +32,16 @@
     margin-left: 54px;
 }
 /* Textos clicaveis */
-.clickableText{
-    color: #ffffff;
+.link{
+    color: var(--color-white);
     font-size: 1.5em;
     text-decoration: none;
     padding: 0px 8px 0px 8px;
 }
+.link:hover{
+    color: var(--color-claret);
+}
+
 /* Div envolvendo logo e textos */
 .logoText{
     display: flex;

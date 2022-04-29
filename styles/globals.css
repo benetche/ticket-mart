@@ -14,3 +14,12 @@ a {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+:root{
+  --color-green: #18F2B2;
+  --color-white: #fff;
+  --color-black: #323232;
+  --color-prussianBlue: #1C3041;
+  --color-blue: #1473E6;
+  --color-claret: #89043D;
+}

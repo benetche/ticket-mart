@@ -2,8 +2,10 @@
 import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import Head from 'next/head'
+import {useRouter} from 'next/router'
 
 export default function Home() {
+  const router = useRouter()
   const number = [1, 2, 3, 4]
   const Banner = () => {
     return (
@@ -33,7 +35,8 @@ export default function Home() {
         <div className={styles.bannersDiv}>
           <Banner></Banner>
         </div>
-        <button className='btn btn-success' style={{ fontSize: '1.25em' }}>Todos os Eventos</button>
+        <button className='btn btn-success' onClick={(()=> router.push('/explore'))} 
+        style={{ fontSize: '1.25em' }}>Todos os Eventos</button>
       </div>
     </div>
   )

@@ -10,8 +10,8 @@ function Header() {
                 <a href='/'><Image src={Logo} alt='logo'
                     width={102} height={48} /></a>
                 <div className={styles.textDiv} >
-                    <a href='explore' className={styles.clickableText}>Explorar Eventos</a>
-                    <a href='publish' className={styles.clickableText}>Publicar Evento</a>
+                    <a href='explore' className={styles.link}>Explorar Eventos</a>
+                    <a href='publish' className={styles.link}>Publicar Evento</a>
                 </div>
             </div>
             <div className={styles.headericons} >

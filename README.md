@@ -211,3 +211,9 @@ No major problems found in the first milestone.
 ## 8. Comments:
 
 No comments for the first milestone.
+
+## 9. Reviews:
+
+As part of this project the group has to peer-review another group's work after each milestone.  
+
+Review 1 - Group 24: https://docs.google.com/document/d/1J8ZI91HjP8c0YY5oTa11FD-RqorYXFPoMAepZjZfodc/edit?usp=sharing

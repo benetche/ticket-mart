@@ -1,5 +1,15 @@
 .main{
-    background-image: url('../assets/backgroundLogin.png');
-    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
     height: 100vh;
+    background-image: url("../assets/test.jpg");
+}
+
+.imageContainer{
+    width: 50vw;
+    margin: auto;
+}
+
+.logo{
+    margin: auto;
 }

@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Tik.me</title>
+        <title>tik.me</title>
       </Head>
       <Header></Header>
       <div className={styles.centerDiv}>

@@ -18,7 +18,6 @@
 .carticon{
     color: var(--color-green);
     font-size: 2em;
-    align-self: flex-end;
     padding: 0px 8px 0px 8px;
 }
 .carticon:hover{

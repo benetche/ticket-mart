@@ -17,10 +17,10 @@ export default function Publish() {
         <p>Preencha o formulário e entraremos em contato em breve.</p>
       </div>
       <div className={styles.centerDiv}>
-        <div><input type="text" className={styles.input} placeholder="Nome" /></div>
-        <div><input type="email" className={styles.input} placeholder="Email" /></div>
-        <div><input type="tel" className={styles.input} placeholder="Telefone" /></div>
-        <div><input type="text" className={styles.input} placeholder="Empresa, agência, atlética, etc" /></div>
+        <div><input type="text" className={styles.input} placeholder="Nome" required/></div>
+        <div><input type="email" className={styles.input} placeholder="Email" required/></div>
+        <div><input type="tel" className={styles.input} placeholder="Telefone" required/></div>
+        <div><input type="text" className={styles.input} placeholder="Empresa, agência, atlética, etc" required/></div>
         <div><input type="text" className={styles.input} placeholder="Descrição Breve" /></div>
         <div><button className='btn btn-success' style={{ fontSize: '1.25em', width: 220, height: 40 }}>Enviar</button></div>
       </div>

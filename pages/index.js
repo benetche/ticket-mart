@@ -25,7 +25,6 @@ export default function Home() {
       <Head>
         <title>tik.me</title>
       </Head>
-      <Header></Header>
       <div className={styles.centerDiv}>
         <div className={styles.mainBanner}>
           <i className='bi bi-caret-left-fill'></i>

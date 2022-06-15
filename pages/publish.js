@@ -11,7 +11,6 @@ export default function Publish() {
         <title>Publicar Evento</title>
       </Head>
 
-      <Header></Header>
       <div className={styles.leftDiv}>
         <h3>Publicar Evento</h3>
         <p>Preencha o formulário e entraremos em contato em breve.</p>

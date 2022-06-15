@@ -1,0 +1,16 @@
+.container{
+    width: fit-content;
+    height: 70vh;
+    border-radius: 1rem;
+    margin: auto;
+    padding: 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; 
+    background-color: white;
+}
+.container a{
+    text-decoration: none;
+    font-size: 1rem;
+}
+.container a:hover{
+    text-decoration: underline;
+}

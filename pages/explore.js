@@ -24,7 +24,6 @@ export default function Explore() {
         <title>Explorar Eventos</title>
       </Head>
 
-      <Header></Header>
       <div className={styles.leftDiv}>
         <h3>Explorar Eventos</h3>
         <input className={styles.searchInput} type='text' placeholder='Buscar Evento' />

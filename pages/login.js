@@ -12,9 +12,10 @@ export default function Login(){
                 <title>Log in - tik.me</title>
             </Head>
             <div className={styles.main}>
+            {/* flex container */}
                 <div className={styles.imageContainer}>
                 <Image src={Logo} alt='logo'
-                    width={300} height={100} className={styles.logo} style={{margin: "auto"}} />
+                width={300} height={100} className={styles.logo} style={{margin: "auto"}} />
                 <p style={{color: "white", fontSize: "2em"}}>Enjoy your time.</p>
                 </div>
                 <LoginContainer/>

@@ -2773,3 +2773,8 @@
   "integrity" "sha512-o96x3OPo8GjWeSLF+wOAbrPfhFOGY0W00GNaxCDv+9hkcDJEnev1yh8S7pgHF0ik6zc8sQLuL8hjHjJULZp8bw=="
   "resolved" "https://registry.npmjs.org/yaml/-/yaml-2.1.1.tgz"
   "version" "2.1.1"
+
+"yarn@^1.22.19":
+  "integrity" "sha512-/0V5q0WbslqnwP91tirOvldvYISzaqhClxzyUKXYxs07yUILIs5jx/k6CFe8bvKSkds5w+eiOqta39Wk3WxdcQ=="
+  "resolved" "https://registry.npmjs.org/yarn/-/yarn-1.22.19.tgz"
+  "version" "1.22.19"

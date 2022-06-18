@@ -20,7 +20,8 @@
     "@mui/material": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/node": "latest",

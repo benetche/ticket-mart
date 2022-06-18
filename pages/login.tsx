@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import Image from 'next/image';
-import BackgroundImage from '../assets/bg-alt.jpg';
 import Logo from '../assets/logo.png';
 import styles from './login.module.css';
 export default function Login() {
@@ -20,9 +19,7 @@ export default function Login() {
               'url(https://wallpaperaccess.com/full/4526320.jpg)',
             backgroundRepeat: 'no-repeat',
           }}
-        >
-          <h3 style={{ color: 'white' }}>Enjoy your time!</h3>
-        </Grid>
+        ></Grid>
         <Grid
           container
           item

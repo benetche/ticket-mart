@@ -11,15 +11,6 @@
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },
-  "lint-staged": {
-    "*.{ts,js,tsx,jsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,graphql,gql}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@emotion/cache": "latest",
     "@emotion/react": "latest",

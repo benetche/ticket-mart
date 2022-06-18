@@ -14,6 +14,9 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  typography: {
+    fontFamily: ['Poppins', 'Roboto', 'sans-serif', '-apple-system'].join(','),
+  },
 });
 
 export default theme;

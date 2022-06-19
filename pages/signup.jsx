@@ -3,9 +3,9 @@ import { Grid, TextField, Button } from '@mui/material';
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './login.module.css';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-export default function Login() {
+
+export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function Login() {
               <Grid container justifyContent="center">
                 <div className={styles.loginHeader}>
                   <Image src={Logo}></Image>
-                  <h2>Fazer Login</h2>
+                  <h2>Cadastrar</h2>
                 </div>
               </Grid>
               <TextField
@@ -50,13 +50,13 @@ export default function Login() {
                   setEmail(e.target.value);
                 }}
               />
+              <TextField label="Nome" type="text" required margin="normal" />
               <TextField
                 label="Senha"
                 type="password"
                 required
                 margin="normal"
               />
-              <Button>Esqueci minha senha</Button>
               <div>
                 <Button
                   color="primary"
@@ -71,10 +71,10 @@ export default function Login() {
                 <Button
                   style={{ width: '100%' }}
                   onClick={() => {
-                    router.push('/signup');
+                    router.push('/login');
                   }}
                 >
-                  Ainda não é um membro?
+                  Já sou membro
                 </Button>
               </div>
             </div>

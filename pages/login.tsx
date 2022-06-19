@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Grid, TextField, Button } from '@mui/material';
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
-import styles from './login.module.css';
+import styles from './Styles/login.module.css';
 import Link from 'next/link';
 
 export default function Login() {

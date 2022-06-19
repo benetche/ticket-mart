@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import { Grid, TextField, Button, Typography } from '@mui/material';
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './login.module.css';
@@ -7,8 +7,8 @@ import { useRouter } from 'next/router';
 
 export default function RecoverPassword() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const router = useRouter();
+
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -40,6 +40,10 @@ export default function RecoverPassword() {
                   <Image src={Logo}></Image>
                   <h2>Recuperar senha</h2>
                 </div>
+                <Typography variant="body1">
+                  Preencha o campo abaixo com o email cadastrado no Ticket-Mart
+                  para iniciar o processo de redefinir a senha.
+                </Typography>
               </Grid>
               <TextField
                 label="Email"
@@ -50,13 +54,6 @@ export default function RecoverPassword() {
                   setEmail(e.target.value);
                 }}
               />
-              <TextField label="Nome" type="text" required margin="normal" />
-              <TextField
-                label="Senha"
-                type="password"
-                required
-                margin="normal"
-              />
               <div>
                 <Button
                   color="primary"
@@ -64,7 +61,7 @@ export default function RecoverPassword() {
                   type="submit"
                   style={{ width: '100%' }}
                 >
-                  Entrar
+                  Enviar
                 </Button>
               </div>
               <div>
@@ -74,7 +71,7 @@ export default function RecoverPassword() {
                     router.push('/login');
                   }}
                 >
-                  Já sou membro
+                  Voltar
                 </Button>
               </div>
             </div>

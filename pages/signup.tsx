@@ -64,7 +64,7 @@ export default function Signup() {
                   type="submit"
                   style={{ width: '100%' }}
                 >
-                  Entrar
+                  Cadastrar
                 </Button>
               </div>
               <div>

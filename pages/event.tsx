@@ -2,21 +2,19 @@ import { Container } from '@mui/system';
 import { Paper, Typography, Grid, Button } from '@mui/material';
 import { AttachMoney, CalendarMonth } from '@mui/icons-material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { colorPallete } from '../src/theme';
 export default function Event() {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        backgroundColor: '#89043D',
-        padding: '30px 0 0 0',
+    <Grid
+      direction="row"
+      justifyContent="center"
+      container
+      sx={{
+        p: 5,
+        backgroundColor: colorPallete.claret,
       }}
     >
-      <Container
-        component="main"
-        maxWidth="sm"
-        sx={{ mb: 4 }}
-        style={{ minWidth: '70vw' }}
-      >
+      <Grid item maxWidth="md">
         <Paper
           variant="outlined"
           sx={{ p: { xs: 2, md: 3 } }}
@@ -97,7 +95,7 @@ export default function Event() {
             </Grid>
           </Grid>
         </Paper>
-      </Container>
-    </div>
+      </Grid>
+    </Grid>
   );
 }

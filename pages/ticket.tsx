@@ -14,13 +14,11 @@ import { colorPallete } from '../src/theme';
 export default function Ticket() {
   return (
     <Grid
-      // maxWidth="sm"
       direction="row"
       justifyContent="center"
       container
       sx={{
-        pb: 5,
-        pt: 5,
+        p: 5,
         backgroundColor: colorPallete.secondary,
       }}
     >

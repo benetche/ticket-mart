@@ -4,11 +4,11 @@ import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './login.module.css';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
+
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -37,7 +37,7 @@ export default function Login() {
             <div className={styles.flexContainer}>
               <Grid container justifyContent="center">
                 <div className={styles.loginHeader}>
-                  <Image src={Logo}></Image>
+                  <Image alt="Tik.me" src={Logo} />
                   <h2>Fazer Login</h2>
                 </div>
               </Grid>
@@ -68,14 +68,11 @@ export default function Login() {
                 </Button>
               </div>
               <div>
-                <Button
-                  style={{ width: '100%' }}
-                  onClick={() => {
-                    router.push('/signup');
-                  }}
-                >
-                  Ainda não é um membro?
-                </Button>
+                <Link href="/signup">
+                  <Button style={{ width: '100%' }}>
+                    Ainda não é um membro?
+                  </Button>
+                </Link>
               </div>
             </div>
           </form>

@@ -3,12 +3,12 @@ import { Grid, TextField, Button } from '@mui/material';
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './login.module.css';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
+
   return (
     <div>
       <Grid container style={{ minHeight: '100vh' }}>
@@ -37,7 +37,7 @@ export default function Signup() {
             <div className={styles.flexContainer}>
               <Grid container justifyContent="center">
                 <div className={styles.loginHeader}>
-                  <Image src={Logo}></Image>
+                  <Image alt="Tik.me" src={Logo} />
                   <h2>Cadastrar</h2>
                 </div>
               </Grid>
@@ -68,14 +68,9 @@ export default function Signup() {
                 </Button>
               </div>
               <div>
-                <Button
-                  style={{ width: '100%' }}
-                  onClick={() => {
-                    router.push('/login');
-                  }}
-                >
-                  Já sou membro
-                </Button>
+                <Link href="/login">
+                  <Button style={{ width: '100%' }}>Já sou membro</Button>
+                </Link>
               </div>
             </div>
           </form>

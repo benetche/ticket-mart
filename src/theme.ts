@@ -13,6 +13,10 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    success: {
+      main: '#18F2B2',
+      contrastText: 'white',
+    },
   },
   typography: {
     fontFamily: ['Poppins', 'Roboto', 'sans-serif', '-apple-system'].join(','),

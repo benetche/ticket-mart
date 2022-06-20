@@ -11,7 +11,7 @@ import { SearchOutlined } from '@mui/icons-material';
 
 const EventContainer = () => {
   return (
-    <Grid container direction="row">
+    <Grid container direction="row" spacing={2}>
       <Grid item sm={4} xs={12}>
         <EventCard />
       </Grid>
@@ -27,9 +27,9 @@ const EventContainer = () => {
 
 export default function Explore() {
   return (
-    <Grid direction="row" container p={4} sm={12}>
+    <Grid container direction="column" p={4} sm={12} style={{ flex: 1 }}>
       <Grid direction="column" item xs={12} sm={8}>
-        <Grid item>
+        <Grid item xs>
           <TextField
             variant="outlined"
             label="Buscar Evento"
@@ -47,8 +47,6 @@ export default function Explore() {
           />
         </Grid>
       </Grid>
-      <EventContainer />
-      <EventContainer />
       <EventContainer />
     </Grid>
   );

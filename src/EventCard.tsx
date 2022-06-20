@@ -16,7 +16,7 @@ const EventTitle = styled(Typography)(() => ({
 }));
 export default function EventCard() {
   return (
-    <Card sx={{ margin: '10px 10px 10px 0' }}>
+    <Card sx={{ margin: '10px 0 10px 0' }}>
       <CardMedia
         component="img"
         height="100"

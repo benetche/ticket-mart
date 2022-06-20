@@ -28,8 +28,8 @@ const EventContainer = () => {
 export default function Explore() {
   return (
     <Grid container direction="column" p={4} sm={12} style={{ flex: 1 }}>
-      <Grid direction="column" item xs={12} sm={8}>
-        <Grid item xs>
+      <Grid item>
+        <Grid item xs={12} sm={8}>
           <TextField
             variant="outlined"
             label="Buscar Evento"

@@ -1,18 +1,57 @@
-import { Grid, TextField, Typography, styled } from '@mui/material';
+import {
+  Grid,
+  TextField,
+  Typography,
+  styled,
+  Button,
+  Paper,
+} from '@mui/material';
 
 const PublishForm = () => {
-  const Field = styled(Grid)(() => ({
-    marginTop: '10px',
-  }));
   return (
-    <Grid container spacing={2}>
-      <Grid item sm={4}>
-        <TextField label="Nome" required fullWidth />
+    <form>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <TextField label="Nome" required fullWidth type="text" />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField label="Sobrenome" fullWidth required type="text" />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField label="Email" fullWidth required type="email" />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField label="Telefone" fullWidth required type="tel" />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            label="Descrição Breve"
+            fullWidth
+            required
+            type="text"
+            multiline
+          />
+          <Grid
+            direction="column"
+            container
+            justifyContent="center"
+            alignContent="center"
+            mt={2}
+            xs={12}
+          >
+            <Button
+              variant="contained"
+              color="success"
+              size="large"
+              style={{ width: '40%' }}
+              type="submit"
+            >
+              Enviar
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid item sm={8}>
-        <TextField label="Sobrenome" fullWidth required />
-      </Grid>
-    </Grid>
+    </form>
   );
 };
 

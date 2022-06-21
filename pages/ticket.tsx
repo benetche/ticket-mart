@@ -10,7 +10,6 @@ import QRcode from '../assets/qrCode.png';
 import Image from 'next/image';
 import styles from './Styles/ticket.module.css';
 import { colorPallete } from '../src/theme';
-
 export default function Ticket() {
   return (
     <Grid

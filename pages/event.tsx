@@ -1,8 +1,9 @@
 import { Container } from '@mui/system';
-import { Paper, Typography, Grid, Button } from '@mui/material';
+import { Paper, Typography, Grid, Button, CardMedia } from '@mui/material';
 import { AttachMoney, CalendarMonth } from '@mui/icons-material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { colorPallete } from '../src/theme';
+
 export default function Event() {
   return (
     <Grid
@@ -15,17 +16,13 @@ export default function Event() {
       }}
     >
       <Grid item maxWidth="md">
-        <Paper
-          variant="outlined"
-          sx={{ p: { xs: 2, md: 3 } }}
-          style={{
-            marginBottom: '5vh',
-            minHeight: '30vh',
-            backgroundColor: 'grey',
-          }}
-        >
-          Banner
-        </Paper>
+        <CardMedia
+          style={{ marginBottom: '10px', borderRadius: '8px' }}
+          component="img"
+          image="https://res.cloudinary.com/htkavmx5a/image/upload/c_scale,f_auto,h_348,q_auto/nnckiy0znnljhgc6tely"
+          alt="Banner do Evento"
+        />
+
         <Paper variant="outlined" sx={{ p: { xs: 2, md: 3 } }}>
           <Grid
             container

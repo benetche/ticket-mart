@@ -183,10 +183,11 @@ The styles are available at the folder `styles`.
 ## 4. Test Plan:
 
 For the first milestone, no tests were made. In the future tests will be made to ensure the system is working properly.
+For the second milestone, only manual tests were performed checking the frontend.
 
 ## 5. Test Results:
 
-No tests results available.
+All tests produced the expected results.
 
 ## 6. Build Procedures:
 

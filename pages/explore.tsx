@@ -8,19 +8,28 @@ import {
 import { Container } from '@mui/system';
 import EventCard from '../src/EventCard';
 import { SearchOutlined } from '@mui/icons-material';
-
+import { useEffect, useState } from 'react';
 const EventContainer = () => {
+  const [data, setData] = useState<any[]>([]);
+  useEffect(() => {
+    fetch('http://localhost:3000/products')
+      .then((response) => {
+        return response.json();
+      })
+      .then((finalData) => {
+        setData(finalData);
+      });
+  }, []);
+
   return (
     <Grid container direction="row" spacing={2}>
-      <Grid item sm={4} xs={12}>
-        <EventCard />
-      </Grid>
-      <Grid item sm={4} xs={12}>
-        <EventCard />
-      </Grid>
-      <Grid item sm={4} xs={12}>
-        <EventCard />
-      </Grid>
+      {data.map((card) => {
+        return (
+          <Grid item sm={4} xs={12} key={card.id}>
+            <EventCard title={card.title} date={card.date} />
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };

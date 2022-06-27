@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Background from '../assets/bg.png';
 import { styled } from '@mui/system';
+import { useState, useEffect } from 'react';
 
 const EventTitle = styled(Typography)(() => ({
   fontWeight: 'bold',
@@ -14,7 +15,15 @@ const EventTitle = styled(Typography)(() => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }));
-export default function EventCard() {
+export default function EventCard({
+  title,
+  date,
+}: {
+  title: string;
+  date: string;
+}) {
+  const [data, setData] = useState({});
+
   return (
     <Card sx={{ margin: '10px 0 10px 0' }}>
       <CardMedia
@@ -25,10 +34,10 @@ export default function EventCard() {
       />
       <CardContent>
         <EventTitle gutterBottom variant="h5">
-          Nome do Evento
+          {title}
         </EventTitle>
         <Typography variant="body1" color="text.secondary">
-          Data do Evento
+          {date}
         </Typography>
       </CardContent>
       <CardActions style={{ display: 'flex', justifyContent: 'center' }}>

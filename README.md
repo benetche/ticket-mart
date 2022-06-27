@@ -217,3 +217,4 @@ No comments for the first milestone.
 As part of this project the group has to peer-review another group's work after each milestone.  
 
 Review 1 - Group 24: https://docs.google.com/document/d/1J8ZI91HjP8c0YY5oTa11FD-RqorYXFPoMAepZjZfodc/edit?usp=sharing
+Review 2 - https://docs.google.com/document/d/1GAFoPBWE2-Xz77N8IMBggatpk-W1NkyVBVKCALA6nwk/edit?usp=sharing

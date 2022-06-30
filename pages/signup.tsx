@@ -4,10 +4,27 @@ import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './Styles/login.module.css';
 import Link from 'next/link';
-
+import { useRouter } from 'next/router';
 export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    await fetch('http://localhost:3000/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: `${name}`,
+        email: `${email}`,
+        password: `${password}`,
+      }),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+      .then(() => console.log('Enviado com sucesso!'))
+      .then(() => router.push('/login'));
+  };
 
   return (
     <Grid container style={{ minHeight: '100vh' }}>
@@ -31,7 +48,7 @@ export default function Signup() {
         direction="column"
       >
         <div />
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.flexContainer}>
             <Grid container justifyContent="center">
               <div className={styles.loginHeader}>
@@ -48,8 +65,24 @@ export default function Signup() {
                 setEmail(e.target.value);
               }}
             />
-            <TextField label="Nome" type="text" required margin="normal" />
-            <TextField label="Senha" type="password" required margin="normal" />
+            <TextField
+              label="Nome"
+              type="text"
+              required
+              margin="normal"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+            <TextField
+              label="Senha"
+              type="password"
+              required
+              margin="normal"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
             <div>
               <Button
                 color="primary"

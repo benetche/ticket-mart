@@ -32,5 +32,19 @@
       "description": "sdadasdasdasd",
       "id": 2
     }
+  ],
+  "users": [
+    {
+      "name": "Vitor",
+      "email": "vitor@usp.br",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "name": "Teste",
+      "email": "teste@teste.br",
+      "password": "123456",
+      "id": 2
+    }
   ]
 }

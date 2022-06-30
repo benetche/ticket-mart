@@ -4,10 +4,16 @@ import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './Styles/login.module.css';
 import Link from 'next/link';
+import Auth from '../src/Auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  function handleLogin(e: React.SyntheticEvent) {
+    e.preventDefault();
+    Auth(email, password);
+  }
 
   return (
     <Grid container item style={{ minHeight: '100vh' }} direction="row">
@@ -31,7 +37,7 @@ export default function Login() {
         direction="column"
       >
         <div />
-        <form>
+        <form onSubmit={(e) => handleLogin(e)}>
           <div className={styles.flexContainer}>
             <Grid container justifyContent="center">
               <div className={styles.loginHeader}>
@@ -48,7 +54,15 @@ export default function Login() {
                 setEmail(e.target.value);
               }}
             />
-            <TextField label="Senha" type="password" required margin="normal" />
+            <TextField
+              label="Senha"
+              type="password"
+              required
+              margin="normal"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
             <Link href="/recover-password">
               <Button>Esqueci minha senha</Button>
             </Link>

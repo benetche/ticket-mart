@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Background from '../assets/bg.png';
 import { styled } from '@mui/system';
 import { useState, useEffect } from 'react';
+import { Grid } from '@mui/material';
 
 const EventTitle = styled(Typography)(() => ({
   fontWeight: 'bold',
@@ -15,13 +16,7 @@ const EventTitle = styled(Typography)(() => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }));
-export default function EventCard({
-  title,
-  date,
-}: {
-  title: string;
-  date: string;
-}) {
+function EventTicket({ title, date }: { title: string; date: string }) {
   const [data, setData] = useState({});
 
   return (
@@ -41,10 +36,23 @@ export default function EventCard({
         </Typography>
       </CardContent>
       <CardActions style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="outlined" color="success" href="/event">
-          Acessar evento
+        <Button variant="outlined" color="success" href="/ticket">
+          Ver ticket
         </Button>
       </CardActions>
     </Card>
+  );
+}
+
+export default function MyTickets() {
+  return (
+    <Grid container p={4} sm={12} style={{ flex: 1 }} spacing={2}>
+      <Grid item sm={3} xs={12}>
+        <EventTicket title="Tusca" date="11/02/2022"></EventTicket>
+      </Grid>
+      <Grid item sm={3} xs={12}>
+        <EventTicket title="Tusca" date="11/02/2022"></EventTicket>
+      </Grid>
+    </Grid>
   );
 }

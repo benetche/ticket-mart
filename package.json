@@ -18,6 +18,8 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
     "json-server": "^0.17.0",
     "next": "latest",
     "react": "latest",

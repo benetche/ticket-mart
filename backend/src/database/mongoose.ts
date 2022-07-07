@@ -1,7 +1,4 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const URI: string =
   'mongodb+srv://beneti:tikmedatabase@tikme.4f4yy.mongodb.net/?retryWrites=true&w=majority';

@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
+import { IEvent } from '../database/models/Event';
 
 interface EventCardProps {
   event: Omit<IEvent, 'date'> & { date: string };

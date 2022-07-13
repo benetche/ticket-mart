@@ -1,5 +1,8 @@
-import EventCard from '../src/EventCard';
 import { Grid, Card, CardMedia, Typography, Button } from '@mui/material';
+import { withUserGuard } from '../utils/userGuards';
+
+export const getServerSideProps = withUserGuard();
+
 export default function Home() {
   return (
     <Grid
@@ -22,17 +25,7 @@ export default function Home() {
           Principais Eventos
         </Typography>
       </Grid>
-      <Grid container direction="row" spacing={2}>
-        <Grid item sm={4} xs={12}>
-          <EventCard title="teste" date="11/12/2022" />
-        </Grid>
-        <Grid item sm={4} xs={12}>
-          <EventCard title="teste" date="11/12/2022" />
-        </Grid>
-        <Grid item sm={4} xs={12}>
-          <EventCard title="teste" date="11/12/2022" />
-        </Grid>
-      </Grid>
+      <Grid container direction="row" spacing={2}></Grid>
       <Grid item textAlign="center" m={4}>
         <Button variant="contained" color="success" fullWidth>
           Explorar Eventos

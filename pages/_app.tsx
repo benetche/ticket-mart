@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ThemeProvider } from '@mui/material/styles';
@@ -8,7 +7,7 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 import { titleFromRoute } from '../utils/routes';
 import { useRouter } from 'next/router';
-import Layout from '../src/Layout';
+import Layout from '../src/components/Layout';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -29,7 +28,7 @@ export default function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <Layout>
+        <Layout user={pageProps?.user}>
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>

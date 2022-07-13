@@ -7,16 +7,25 @@ import {
   Grid,
   Box,
   styled,
+  Button,
+  Typography,
+  Divider,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
 import { useState, useEffect, Fragment } from 'react';
-import { iconFromRoute, routes } from '../utils/routes';
+import { iconFromRoute, routes, VisitorType } from '../../utils/routes';
 import Link from './Link';
 import Image from 'next/image';
 
-import Logo from '../assets/logo.png';
-import { colorPallete } from './theme';
+import Logo from '../../assets/logo.png';
+import { colorPallete } from '../theme';
+import { IronSessionData } from 'iron-session';
+import { Container } from '@mui/system';
+
+interface HeaderProps {
+  user: Partial<IronSessionData['user']>;
+}
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -43,7 +52,20 @@ const NotActiveMenuButtonLink = styled(MenuButtonLink)(({ theme }) => ({
   color: '#FFF',
 }));
 
-export default function Header() {
+export default function Header({ user }: HeaderProps) {
+  const userType = user?.type ?? 'guest';
+
+  console.log(user);
+
+  const contextRoutes: typeof routes = Object.fromEntries(
+    Object.entries(routes).filter(
+      ([, { validUserTypes, type }]) =>
+        type !== 'invisible' &&
+        (validUserTypes === 'all' ||
+          validUserTypes.includes(userType as VisitorType))
+    )
+  );
+
   const router = useRouter();
 
   const [mobileView, setMobileView] = useState(false);
@@ -135,40 +157,84 @@ export default function Header() {
   };
 
   const getDrawerChoices = () => {
-    return Object.keys(routes)
-      .filter((href) => {
-        const route = routes[href];
-        return (
-          route.type === 'secondary' || (mobileView && route.type === 'primary')
-        );
-      })
-      .map((href) => {
-        const { label } = routes[href];
-        return (
-          <MenuItem key={label} sx={{ margin: '10px 0' }}>
-            {iconFromRoute(href)}
-            <Link
-              sx={{
-                marginLeft: '15px',
-                transition: '0.25s',
-                color: router.route === href ? '#F24302' : 'inherit',
-              }}
-              onClick={() => setDrawerOpen(false)}
-              href={href}
-              color="inherit"
-              style={{ textDecoration: 'none' }}
-            >
-              {label}
-            </Link>
-          </MenuItem>
-        );
-      });
+    return (
+      <>
+        {user?.name ? (
+          <>
+            <MenuItem>
+              <Typography
+                sx={{
+                  fontSize: '1.2rem',
+                }}
+              >
+                Olá, {user.name}
+              </Typography>
+            </MenuItem>
+            <Divider />
+          </>
+        ) : (
+          <></>
+        )}
+        {Object.keys(contextRoutes)
+          .filter((href) => {
+            const route = contextRoutes[href];
+            return (
+              route.type === 'secondary' ||
+              (mobileView && route.type === 'primary')
+            );
+          })
+          .map((href) => {
+            const { label, fn } = contextRoutes[href];
+            const menuItem = (
+              <MenuItem
+                key={label}
+                sx={{ margin: '10px 0' }}
+                onClick={
+                  fn
+                    ? async () => {
+                        await fn();
+                        setDrawerOpen(false);
+                      }
+                    : undefined
+                }
+              >
+                {iconFromRoute(href)}
+                <Typography
+                  sx={{
+                    marginLeft: '15px',
+                    transition: '0.25s',
+                    color: router.route === href ? '#F24302' : 'inherit',
+                  }}
+                >
+                  {label}
+                </Typography>
+              </MenuItem>
+            );
+            return fn ? (
+              menuItem
+            ) : (
+              <Link
+                sx={{
+                  textDecoration: 'none',
+                }}
+                key={label}
+                onClick={() => {
+                  setDrawerOpen(false);
+                }}
+                href={href}
+              >
+                {menuItem}
+              </Link>
+            );
+          })}
+      </>
+    );
   };
 
   const getIconChoices = () => {
-    return Object.keys(routes)
+    return Object.keys(contextRoutes)
       .filter((href) => {
-        const route = routes[href];
+        const route = contextRoutes[href];
         return route.type === 'icon';
       })
       .map((href) => {
@@ -211,13 +277,13 @@ export default function Header() {
   );
 
   const getMenuButtons = () => {
-    return Object.keys(routes)
+    return Object.keys(contextRoutes)
       .filter((href) => {
-        const route = routes[href];
+        const route = contextRoutes[href];
         return route.type === 'primary';
       })
       .map((href) => {
-        const { label } = routes[href];
+        const { label } = contextRoutes[href];
         return router.route === href ? (
           <ActiveMenuButtonLink href={href} key={label}>
             {label}

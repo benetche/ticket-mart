@@ -1,19 +1,64 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import {
+  Grid,
+  TextField,
+  Button,
+  Alert,
+  CircularProgress,
+} from '@mui/material';
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './Styles/login.module.css';
-import Link from 'next/link';
-import Auth from '../src/Auth';
+import Link from '../src/components/Link';
+import axios from 'axios';
+import { withUserGuard } from '../utils/userGuards';
+import { useRouter } from 'next/router';
+
+export const getServerSideProps = withUserGuard();
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginMessage, setLoginMessage] = useState<{
+    severity: 'success' | 'error';
+    message: string;
+  }>();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  function handleLogin(e: React.SyntheticEvent) {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    Auth(email, password);
-  }
+
+    setLoading(true);
+
+    try {
+      const res = await axios.post('/api/user/login', {
+        email,
+        password,
+      });
+
+      if (res.status === 200) {
+        setLoginMessage({
+          severity: 'success',
+          message: 'Login realizado com sucesso!',
+        });
+
+        router.push('/home');
+      } else {
+        throw {
+          response: res,
+        };
+      }
+    } catch (err: any) {
+      setLoginMessage({
+        severity: 'error',
+        message: err?.response?.data?.message ?? 'Erro ao fazer login!',
+      });
+    }
+
+    setLoading(false);
+  };
 
   return (
     <Grid container item style={{ minHeight: '100vh' }} direction="row">
@@ -37,7 +82,7 @@ export default function Login() {
         direction="column"
       >
         <div />
-        <form onSubmit={(e) => handleLogin(e)}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.flexContainer}>
             <Grid container justifyContent="center">
               <div className={styles.loginHeader}>
@@ -49,7 +94,7 @@ export default function Login() {
               label="Email"
               type="email"
               required
-              margin="normal"
+              sx={{ mb: 2 }}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -58,21 +103,41 @@ export default function Login() {
               label="Senha"
               type="password"
               required
-              margin="normal"
+              sx={{ mb: 2 }}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
-            <Link href="/recover-password">
-              <Button>Esqueci minha senha</Button>
-            </Link>
 
-            <Button color="primary" variant="contained" type="submit">
+            {loading && (
+              <Grid container justifyContent="center">
+                <CircularProgress sx={{ mb: 2 }} />
+              </Grid>
+            )}
+
+            {loginMessage && (
+              <Alert sx={{ mb: 2 }} severity={loginMessage.severity}>
+                {loginMessage.message}
+              </Alert>
+            )}
+
+            <Button
+              sx={{ mb: 2, width: '100%' }}
+              color="primary"
+              variant="contained"
+              type="submit"
+            >
               Entrar
             </Button>
 
+            <Link href="/recover-password">
+              <Button sx={{ mb: 2, width: '100%' }}>Esqueci minha senha</Button>
+            </Link>
+
             <Link href="/signup">
-              <Button>Ainda não é um membro?</Button>
+              <Button sx={{ mb: 2, width: '100%' }}>
+                Ainda não é um membro?
+              </Button>
             </Link>
           </div>
         </form>

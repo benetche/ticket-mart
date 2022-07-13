@@ -1,29 +1,66 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button } from '@mui/material';
+import {
+  Grid,
+  TextField,
+  Button,
+  Alert,
+  CircularProgress,
+} from '@mui/material';
 import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './Styles/login.module.css';
-import Link from 'next/link';
+import Link from '../src/components/Link';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import { withUserGuard } from '../utils/userGuards';
+
+export const getServerSideProps = withUserGuard();
+
 export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [signupMessage, setSignupMessage] = useState<{
+    severity: 'success' | 'error';
+    message: string;
+  }>();
+  const [loading, setLoading] = useState<boolean>(false);
+
   const router = useRouter();
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    await fetch('http://localhost:3000/users', {
-      method: 'POST',
-      body: JSON.stringify({
-        name: `${name}`,
-        email: `${email}`,
-        password: `${password}`,
-      }),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
-      .then(() => console.log('Enviado com sucesso!'))
-      .then(() => router.push('/login'));
+
+    setLoading(true);
+
+    try {
+      const res = await axios.put('/api/user/register', {
+        email,
+        password,
+        name,
+      });
+
+      if (res.status === 201) {
+        setSignupMessage({
+          severity: 'success',
+          message: 'Nova conta criada com sucesso! Faça login para continuar!',
+        });
+        setTimeout(() => {
+          router.push('/');
+        }, 2000);
+      } else {
+        throw {
+          response: res,
+        };
+      }
+    } catch (err: any) {
+      setSignupMessage({
+        severity: 'error',
+        message: err?.response?.data?.message ?? 'Erro ao criar conta!',
+      });
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -48,7 +85,7 @@ export default function Signup() {
         direction="column"
       >
         <div />
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.flexContainer}>
             <Grid container justifyContent="center">
               <div className={styles.loginHeader}>
@@ -60,7 +97,7 @@ export default function Signup() {
               label="Email"
               type="email"
               required
-              margin="normal"
+              sx={{ mb: 2 }}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -69,7 +106,7 @@ export default function Signup() {
               label="Nome"
               type="text"
               required
-              margin="normal"
+              sx={{ mb: 2 }}
               onChange={(e) => {
                 setName(e.target.value);
               }}
@@ -78,24 +115,36 @@ export default function Signup() {
               label="Senha"
               type="password"
               required
-              margin="normal"
+              sx={{ mb: 2 }}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
+
+            {loading && (
+              <Grid container justifyContent="center">
+                <CircularProgress sx={{ mb: 2 }} />
+              </Grid>
+            )}
+
+            {signupMessage && (
+              <Alert sx={{ mb: 2 }} severity={signupMessage.severity}>
+                {signupMessage.message}
+              </Alert>
+            )}
             <div>
               <Button
+                sx={{ mb: 2, width: '100%' }}
                 color="primary"
                 variant="contained"
                 type="submit"
-                style={{ width: '100%' }}
               >
                 Cadastrar
               </Button>
             </div>
             <div>
-              <Link href="/login">
-                <Button style={{ width: '100%' }}>Já sou membro</Button>
+              <Link href="/">
+                <Button sx={{ mb: 2, width: '100%' }}>Já sou membro</Button>
               </Link>
             </div>
           </div>

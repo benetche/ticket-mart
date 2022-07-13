@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Logo from '../assets/logo.png';
 import styles from './Styles/login.module.css';
 import { useRouter } from 'next/router';
+import { withUserGuard } from '../utils/userGuards';
+
+export const getServerSideProps = withUserGuard();
 
 export default function RecoverPassword() {
   const [email, setEmail] = useState('');

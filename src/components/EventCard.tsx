@@ -1,13 +1,14 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Background from '../assets/bg.png';
 import { styled } from '@mui/system';
-import { useState, useEffect } from 'react';
+
+interface EventCardProps {
+  event: Omit<IEvent, 'date'> & { date: string };
+}
 
 const EventTitle = styled(Typography)(() => ({
   fontWeight: 'bold',
@@ -15,33 +16,32 @@ const EventTitle = styled(Typography)(() => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }));
-export default function EventCard({
-  title,
-  date,
-}: {
-  title: string;
-  date: string;
-}) {
-  const [data, setData] = useState({});
 
+export default function EventCard({ event }: EventCardProps) {
   return (
     <Card sx={{ margin: '10px 0 10px 0' }}>
       <CardMedia
         component="img"
         height="100"
-        image="https://res.cloudinary.com/htkavmx5a/image/upload/c_scale,f_auto,h_348,q_auto/nnckiy0znnljhgc6tely"
+        image={event.imageUrl}
         alt="Banner do Evento"
       />
       <CardContent>
         <EventTitle gutterBottom variant="h5">
-          {title}
+          {event.name}
         </EventTitle>
+        <Typography variant="body1" color="text.secondary" mb={1}>
+          R$ {event.price.toFixed(2).replace('.', ',')}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" mb={1}>
+          {event.location}
+        </Typography>
         <Typography variant="body1" color="text.secondary">
-          {date}
+          {new Date(event.date).toLocaleDateString('pt-BR')}
         </Typography>
       </CardContent>
       <CardActions style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="outlined" color="success" href="/event">
+        <Button variant="outlined" color="primary" href={`/event/${event._id}`}>
           Acessar evento
         </Button>
       </CardActions>

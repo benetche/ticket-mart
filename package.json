@@ -24,6 +24,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-responsive-carousel": "^3.2.23",
     "yarn": "^1.22.19"
   },
   "devDependencies": {

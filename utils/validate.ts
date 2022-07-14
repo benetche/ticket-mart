@@ -6,8 +6,16 @@ export function isValidString(value: unknown): value is string {
   return isDefined(value) && typeof value === 'string' && value.length > 0;
 }
 
-export function isValidNumber(value: unknown): value is number {
-  return isDefined(value) && typeof value === 'number' && !Number.isNaN(value);
+export function isValidNumber(
+  value: unknown,
+  positive = false
+): value is number {
+  return (
+    isDefined(value) &&
+    typeof value === 'number' &&
+    !Number.isNaN(value) &&
+    (!positive || value > 0)
+  );
 }
 
 export function isValidEmail(value: unknown): value is string {

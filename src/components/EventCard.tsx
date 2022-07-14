@@ -32,7 +32,10 @@ export default function EventCard({ event }: EventCardProps) {
           {event.name}
         </EventTitle>
         <Typography variant="body1" color="text.secondary" mb={1}>
-          R$ {event.price.toFixed(2).replace('.', ',')}
+          {new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          }).format(event.price)}
         </Typography>
         <Typography variant="body1" color="text.secondary" mb={1}>
           {event.location}

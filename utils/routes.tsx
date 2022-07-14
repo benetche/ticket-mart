@@ -22,6 +22,7 @@ export interface TRoute {
   type: 'primary' | 'icon' | 'secondary' | 'invisible';
   icon?: ReactElement;
   validUserTypes: VisitorType[] | 'all';
+  matchRegex?: RegExp;
   fn?: () => void | Promise<void>;
 }
 
@@ -90,14 +91,20 @@ export const routes: Record<string, TRoute> = {
     validUserTypes: ['user', 'admin'],
   },
   '/': {
-    label: 'Index',
+    label: 'Login',
     type: 'invisible',
     validUserTypes: ['guest'],
+  },
+  '/event': {
+    label: 'Event',
+    type: 'invisible',
+    validUserTypes: ['admin', 'user'],
+    matchRegex: /\/event\/[\[\]a-zA-Z0-9]+/,
   },
 };
 
 export const titleFromRoute = (baseTitle: string, route: string): string => {
-  const currRoute = routes[route];
+  const currRoute = getCurrentRoute(route);
   if (currRoute) {
     return `${baseTitle} | ${currRoute.label}`;
   }
@@ -105,17 +112,16 @@ export const titleFromRoute = (baseTitle: string, route: string): string => {
 };
 
 export const iconFromRoute = (route: string): ReactElement => {
-  const currRoute = routes[route];
-  if (currRoute.icon) {
+  const currRoute = getCurrentRoute(route);
+  if (currRoute?.icon) {
     return currRoute.icon;
   }
   return <Home />;
 };
 
-export const redirectToFrom = (route: string): string => {
-  const currRoute = routes[route];
+export const redirectToFrom = (route: string, bounceBack = false): string => {
+  const currRoute = getCurrentRoute(route);
   if (currRoute === undefined) {
-    console.warn(`Using non defined route: ${route}`);
     return route;
   }
   const { validUserTypes } = currRoute;
@@ -127,12 +133,33 @@ export const redirectToFrom = (route: string): string => {
   }
   if (validUserTypes.includes('admin')) {
     if (validUserTypes.includes('user')) {
-      return '/';
+      return '/' + (bounceBack ? `?bounce=${route}` : '');
     }
     return '/home';
   }
   if (validUserTypes.includes('user')) {
-    return '/';
+    return '/' + (bounceBack ? `?bounce=${route}` : '');
   }
   return route;
+};
+
+export const getCurrentRoute = (
+  url: string,
+  contextRoutes = routes
+): TRoute | undefined => {
+  const route = contextRoutes[url];
+  if (route !== undefined) {
+    return route;
+  }
+  const match = Object.keys(contextRoutes).find((key: string) => {
+    const currRoute = contextRoutes[key];
+    if (currRoute.matchRegex) {
+      return currRoute.matchRegex.test(url);
+    }
+    return false;
+  });
+  if (match) {
+    return contextRoutes[match];
+  }
+  console.warn(`Using non defined route: ${url}`);
 };

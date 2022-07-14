@@ -33,6 +33,7 @@ export default function Ticket() {
   return (
     <Grid
       direction="row"
+      minHeight="100vh"
       justifyContent="center"
       container
       sx={{

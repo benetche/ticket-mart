@@ -9,5 +9,11 @@ declare module 'iron-session' {
       name: string;
       type: string;
     };
+    cart?: {
+      [eventId: string]: {
+        _id: string;
+        quantity: number;
+      };
+    };
   }
 }

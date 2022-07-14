@@ -13,6 +13,7 @@ import Link from '../src/components/Link';
 import axios from 'axios';
 import { withUserGuard } from '../utils/userGuards';
 import { useRouter } from 'next/router';
+import { isValidString } from '../utils/validate';
 
 export const getServerSideProps = withUserGuard();
 
@@ -44,7 +45,11 @@ export default function Login() {
           message: 'Login realizado com sucesso!',
         });
 
-        router.push('/home');
+        if (isValidString(router.query.bounce)) {
+          router.push(router.query.bounce);
+        } else {
+          router.push('/home');
+        }
       } else {
         throw {
           response: res,

@@ -6,11 +6,10 @@ import {
   Switch,
   FormGroup,
   FormControlLabel,
-  InputAdornment,
 } from '@mui/material';
 import { useState } from 'react';
 
-const PublishForm = () => {
+const UserForm = () => {
   return (
     <form>
       <Grid container spacing={2}>
@@ -70,7 +69,7 @@ export default function CreateUser() {
           Preencha os campos necessários para criar um novo usuário.
         </Typography>
       </Grid>
-      <PublishForm />
+      <UserForm />
     </Grid>
   );
 }

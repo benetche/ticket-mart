@@ -3,6 +3,14 @@ import { Grid, Typography, Paper, Button } from '@mui/material';
 export default function AdminView() {
   return (
     <Grid textAlign="center" flex={1} m={4}>
+      <Grid item m={2}>
+        <Typography variant="h5" fontWeight="bold">
+          Painel de Controle
+        </Typography>
+      </Grid>
+      <Grid item m={2}>
+        <Typography variant="body1">Seja bem-vindo, admin</Typography>
+      </Grid>
       <Grid container item sm={12} direction="row" spacing={2}>
         <Grid item xs={12} sm={6}>
           <Paper sx={{ p: { xs: 2, md: 3 } }}>
@@ -18,6 +26,11 @@ export default function AdminView() {
               <Grid item>
                 <Button variant="contained" color="success" fullWidth>
                   Adicionar evento
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color="success" fullWidth>
+                  Explorar Eventos
                 </Button>
               </Grid>
             </Grid>

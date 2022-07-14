@@ -1,7 +1,8 @@
 import { IronSessionData } from 'iron-session';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-import { redirectToFrom, routes, VisitorType } from './routes';
+import { getCurrentRoute, redirectToFrom, VisitorType } from './routes';
 import { withSessionSsr } from './withSession';
+import url from 'url';
 
 export interface BasicUserInfoSSR {
   user: IronSessionData['user'] | { type: string };
@@ -21,7 +22,10 @@ export function withUserGuard<P>(
       type: 'guest',
     };
 
-    const currRoute = routes[context.resolvedUrl];
+    const pureUrl =
+      url.parse(context.resolvedUrl).pathname ?? context.resolvedUrl;
+
+    const currRoute = getCurrentRoute(pureUrl);
 
     if (currRoute !== undefined) {
       const { validUserTypes } = currRoute;
@@ -30,14 +34,12 @@ export function withUserGuard<P>(
         if (!validUserTypes.includes(type as VisitorType)) {
           return {
             redirect: {
-              destination: redirectToFrom(context.resolvedUrl),
+              destination: redirectToFrom(pureUrl, true),
               permanent: false,
             },
           };
         }
       }
-    } else {
-      console.warn(`Using non defined route: ${context.resolvedUrl}`);
     }
 
     if (handler !== undefined) {

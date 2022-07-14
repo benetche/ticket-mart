@@ -12,6 +12,8 @@ import { SearchOutlined } from '@mui/icons-material';
 import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
 import { connectToDatabase } from '../src/database/conn';
 import { Event, IEvent } from '../src/database/models/Event';
+import { useState } from 'react';
+import { normalizeStr } from '../utils/utils';
 
 interface ExploreProps {
   events: (Omit<IEvent, 'date'> & { date: string })[];
@@ -51,7 +53,24 @@ const EventContainer = ({ events }: { events: ExploreProps['events'] }) => {
   );
 };
 
+function filterEvents(
+  events: ExploreProps['events'],
+  filter: string
+): ExploreProps['events'] {
+  if (filter === '') return events;
+  return events.filter((event) => {
+    return normalizeStr(event.name).includes(normalizeStr(filter));
+  });
+}
+
 export default function Explore({ events }: ExploreProps) {
+  const [search, setSearch] = useState('');
+  const [filteredEvents, setFilteredEvents] = useState(events);
+
+  function handleSearch() {
+    setFilteredEvents(filterEvents(events, search));
+  }
+
   return (
     <Grid container direction="column" p={4} sx={{ flex: 1 }}>
       <Grid container direction="row" justifyContent="space-around">
@@ -60,6 +79,13 @@ export default function Explore({ events }: ExploreProps) {
             variant="outlined"
             label="Buscar Evento"
             fullWidth
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                handleSearch();
+              }
+            }}
             size="medium"
             InputProps={{
               endAdornment: (
@@ -77,12 +103,13 @@ export default function Explore({ events }: ExploreProps) {
             sx={{ height: '100%', width: '100%', fontSize: '1.1rem' }}
             variant="contained"
             color="secondary"
+            onClick={() => handleSearch()}
           >
             Buscar
           </Button>
         </Grid>
       </Grid>
-      <EventContainer events={events} />
+      <EventContainer events={filteredEvents} />
     </Grid>
   );
 }

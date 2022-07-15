@@ -5,31 +5,17 @@ import {
   DialogContent,
   CircularProgress,
   Typography,
-  Select,
-  MenuItem,
   CardContent,
   TextField,
   Button,
   Snackbar,
   Alert,
-  FormControl,
-  InputLabel,
-  FormHelperText,
 } from '@mui/material';
-import { SentimentVeryDissatisfied } from '@mui/icons-material';
 import axios from 'axios';
 import { useState } from 'react';
 import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
-import { CompleteCartItem, getCompleteCartItems } from './api/cart';
-import {
-  isValidCPF,
-  isValidNumber,
-  isValidString,
-  isValidEmail,
-} from '../utils/validate';
+import { isValidString, isValidEmail } from '../utils/validate';
 import { useRouter } from 'next/router';
-import { IUser, User } from '../src/database/models/User';
-import { connectToDatabase } from '../src/database/conn';
 
 interface UserPageProps {
   user: BasicUserInfoSSR;

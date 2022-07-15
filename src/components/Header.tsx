@@ -7,7 +7,6 @@ import {
   Grid,
   Box,
   styled,
-  Button,
   Typography,
   Divider,
 } from '@mui/material';
@@ -21,7 +20,6 @@ import Image from 'next/image';
 import Logo from '../../assets/logo.png';
 import { colorPallete } from '../theme';
 import { IronSessionData } from 'iron-session';
-import { Container } from '@mui/system';
 
 interface HeaderProps {
   user: Partial<IronSessionData['user']>;

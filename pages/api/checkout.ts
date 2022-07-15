@@ -1,9 +1,8 @@
-import { IronSession } from 'iron-session';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '../../src/database/conn';
 import { Event } from '../../src/database/models/Event';
 import { ClientError } from '../../utils/errors';
-import { isValidCPF, isValidNumber, isValidString } from '../../utils/validate';
+import { isValidCPF, isValidString } from '../../utils/validate';
 import { withMethodsAndSessionRoute } from '../../utils/withMethods';
 import { ITicket, Ticket } from '../../src/database/models/Ticket';
 import { User } from '../../src/database/models/User';

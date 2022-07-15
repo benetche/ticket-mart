@@ -1,6 +1,5 @@
 import {
   Grid,
-  Paper,
   Typography,
   Button,
   TextField,
@@ -10,13 +9,9 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  FormControl,
-  FormControlLabel,
-  Switch,
   Alert,
   Card,
   CircularProgress,
-  FormGroup,
   Menu,
   MenuItem,
   Snackbar,
@@ -29,11 +24,9 @@ import dayjs from 'dayjs';
 import { BasicUserInfoSSR, withUserGuard } from '../../utils/userGuards';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { userInfo } from 'os';
 import { isValidNumber, isValidURL } from '../../utils/validate';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
-import user from '../user';
 import { normalizeStr } from '../../utils/utils';
 
 interface ManageEventProps {

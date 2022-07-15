@@ -1,4 +1,3 @@
-import { TrySharp } from '@mui/icons-material';
 import { IronSession } from 'iron-session';
 import mongoose, { ClientSession, isValidObjectId } from 'mongoose';
 import { connectToDatabase } from '../../src/database/conn';

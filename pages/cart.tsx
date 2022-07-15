@@ -6,7 +6,6 @@ import {
   CircularProgress,
   Typography,
   CardContent,
-  Paper,
   TextField,
   Button,
   Snackbar,
@@ -14,7 +13,6 @@ import {
 } from '@mui/material';
 import { SentimentVeryDissatisfied } from '@mui/icons-material';
 import axios from 'axios';
-import { StringifyOptions } from 'querystring';
 import { useState } from 'react';
 import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
 import { CompleteCartItem, getCompleteCartItems } from './api/cart';
@@ -180,7 +178,7 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
 
   const initTotals = initialCartItems.reduce(
     (prev: Record<string, number>, cur: typeof cartItems[0]) => {
-      prev[cur._id] = cur.price * cur.quantity;
+      prev[cur._id.toString()] = cur.price * cur.quantity;
       return prev;
     },
     {}

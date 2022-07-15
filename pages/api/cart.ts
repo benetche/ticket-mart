@@ -193,7 +193,7 @@ export const getCompleteCartItems = async (session: IronSession) => {
   const events = await Event.find({ _id: { $in: Object.keys(cart) } });
 
   const eventsWithQuantity = events.map((event) => {
-    const quantity = cart[event._id].quantity;
+    const quantity = cart[event._id.toString()].quantity;
     return {
       ...event.toObject(),
       quantity,

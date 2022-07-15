@@ -10,10 +10,13 @@ import {
   SearchOutlined,
   PublishOutlined,
   LogoutOutlined,
+  PersonAddOutlined,
+  AccountCircleOutlined,
+  AddBoxOutlined,
+  AdminPanelSettingsOutlined,
 } from '@mui/icons-material';
 import axios from 'axios';
 import { UserType } from '../src/database/models/User';
-import { VariableExpressionOperator } from 'mongoose';
 
 export type VisitorType = UserType | 'guest';
 
@@ -34,33 +37,28 @@ export const routes: Record<string, TRoute> = {
     validUserTypes: ['guest'],
   },
   '/register': {
-    label: 'Register',
+    label: 'Cadastrar',
     type: 'secondary',
-
+    icon: <PersonAddOutlined />,
     validUserTypes: ['guest'],
   },
   '/home': {
     label: 'Home',
     type: 'secondary',
     icon: <HomeOutlined />,
-    validUserTypes: ['user', 'admin'],
+    validUserTypes: 'all',
   },
   '/user': {
     label: 'Meu Perfil',
     type: 'secondary',
+    icon: <AccountCircleOutlined />,
     validUserTypes: ['user', 'admin'],
   },
   '/explore': {
     label: 'Explorar Eventos',
     type: 'primary',
     icon: <SearchOutlined />,
-    validUserTypes: ['user', 'admin'],
-  },
-  '/publish': {
-    label: 'Publicar Evento',
-    type: 'primary',
-    icon: <PublishOutlined />,
-    validUserTypes: ['user', 'admin'],
+    validUserTypes: 'all',
   },
   '/my-tickets': {
     label: 'Meus Tickets',
@@ -68,11 +66,23 @@ export const routes: Record<string, TRoute> = {
     icon: <ConfirmationNumberOutlined />,
     validUserTypes: ['user', 'admin'],
   },
-  '/help': {
-    label: 'Ajuda',
+  '/admin': {
+    label: 'Painel de Administração',
+    icon: <AdminPanelSettingsOutlined />,
     type: 'secondary',
-    icon: <HelpCenterOutlined />,
-    validUserTypes: 'all',
+    validUserTypes: ['admin'],
+  },
+  '/admin/create-event': {
+    label: 'Criar Evento',
+    icon: <AddBoxOutlined />,
+    type: 'primary',
+    validUserTypes: ['admin'],
+  },
+  '/admin/create-user': {
+    label: 'Criar Usuário',
+    icon: <PersonAddOutlined />,
+    type: 'secondary',
+    validUserTypes: ['admin'],
   },
   '/logout': {
     label: 'Logout',
@@ -81,7 +91,7 @@ export const routes: Record<string, TRoute> = {
     validUserTypes: ['user', 'admin'],
     fn: async () => {
       await axios.post('/api/user/logout');
-      Router.push('/');
+      Router.push('/login');
     },
   },
   '/cart': {
@@ -90,16 +100,37 @@ export const routes: Record<string, TRoute> = {
     icon: <ShoppingCartOutlined />,
     validUserTypes: ['user', 'admin'],
   },
-  '/': {
-    label: 'Login',
+  '/admin/manage-events': {
+    label: 'Gerenciar Eventos',
     type: 'invisible',
-    validUserTypes: ['guest'],
+    validUserTypes: ['admin'],
+  },
+  '/admin/manage-users': {
+    label: 'Gerenciar Usuários',
+    type: 'invisible',
+    validUserTypes: ['admin'],
+  },
+  '/': {
+    label: 'Home',
+    type: 'invisible',
+    validUserTypes: 'all',
   },
   '/event': {
     label: 'Event',
     type: 'invisible',
-    validUserTypes: ['admin', 'user'],
+    validUserTypes: 'all',
     matchRegex: /\/event\/[\[\]a-zA-Z0-9]+/,
+  },
+  '/ticket': {
+    label: 'Ticket',
+    type: 'invisible',
+    validUserTypes: ['admin', 'user'],
+    matchRegex: /\/ticket\/[\[\]a-zA-Z0-9]+/,
+  },
+  '/checkout': {
+    label: 'Checkout',
+    type: 'invisible',
+    validUserTypes: ['user', 'admin'],
   },
 };
 
@@ -129,16 +160,16 @@ export const redirectToFrom = (route: string, bounceBack = false): string => {
     return route;
   }
   if (validUserTypes.includes('guest')) {
-    return '/home';
+    return '/';
   }
   if (validUserTypes.includes('admin')) {
     if (validUserTypes.includes('user')) {
-      return '/' + (bounceBack ? `?bounce=${route}` : '');
+      return '/login' + (bounceBack ? `?bounce=${route}` : '');
     }
-    return '/home';
+    return '/';
   }
   if (validUserTypes.includes('user')) {
-    return '/' + (bounceBack ? `?bounce=${route}` : '');
+    return '/login' + (bounceBack ? `?bounce=${route}` : '');
   }
   return route;
 };

@@ -1,7 +1,7 @@
 import mongoose, { Document, model, Model, Schema } from 'mongoose';
 
 export interface IEvent extends Document {
-  _id: string;
+  _id: mongoose.Types.ObjectId;
   name: string;
   description: string;
   date: Date;
@@ -25,7 +25,7 @@ const EventSchema: Schema = new Schema({
   date: {
     type: Date,
     required: [true, 'Insira a data do evento!'],
-    min: [new Date(), 'O evento deve ser no futuro!'],
+    // min: [new Date(), 'O evento deve ser no futuro!'],
   },
   location: {
     type: String,

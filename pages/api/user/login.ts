@@ -31,6 +31,7 @@ export default withMethodsAndSessionRoute({
         email: user.email,
         name: user.name,
         type: user.type,
+        phone: user.phone,
       };
 
       await req.session.save();

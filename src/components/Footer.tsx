@@ -80,9 +80,9 @@ export default function Footer({ style }: FooterProps) {
               target="_blank"
               rel="noopener"
               color="inherit"
-              href="https://google.com"
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             >
-              ???
+              Rick Astley
             </MuiLink>
           </FooterItem>
         </Grid>

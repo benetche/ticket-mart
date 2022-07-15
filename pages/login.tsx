@@ -48,7 +48,7 @@ export default function Login() {
         if (isValidString(router.query.bounce)) {
           router.push(router.query.bounce);
         } else {
-          router.push('/home');
+          router.push('/');
         }
       } else {
         throw {
@@ -134,10 +134,6 @@ export default function Login() {
             >
               Entrar
             </Button>
-
-            <Link href="/recover-password">
-              <Button sx={{ mb: 2, width: '100%' }}>Esqueci minha senha</Button>
-            </Link>
 
             <Link href="/signup">
               <Button sx={{ mb: 2, width: '100%' }}>

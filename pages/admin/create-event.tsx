@@ -8,6 +8,9 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { useState } from 'react';
+import { withUserGuard } from '../../utils/userGuards';
+
+export const getServerSideProps = withUserGuard();
 
 const PublishForm = () => {
   return (

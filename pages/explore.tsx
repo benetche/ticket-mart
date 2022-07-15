@@ -24,13 +24,10 @@ export const getServerSideProps = withUserGuard<{
   events: ExploreProps['events'];
 }>(async (_ctx) => {
   await connectToDatabase();
-  const nowInMillis = Date.now();
-  const events = (await Event.find().gt('stockQuantity', 0)).sort((a, b) => {
-    return (
-      Math.abs(nowInMillis - new Date(a.date).getTime()) -
-      Math.abs(nowInMillis - new Date(b.date).getTime())
-    );
-  });
+  const events = await Event.find()
+    .gt('stockQuantity', 0)
+    .gt('date', new Date())
+    .sort({ date: -1 });
 
   return {
     props: {
@@ -44,7 +41,7 @@ const EventContainer = ({ events }: { events: ExploreProps['events'] }) => {
     <Grid container direction="row" spacing={2}>
       {events.map((event) => {
         return (
-          <Grid item sm={4} xs={12} key={event._id}>
+          <Grid item sm={4} xs={12} key={event._id.toString()}>
             <EventCard event={event} />
           </Grid>
         );

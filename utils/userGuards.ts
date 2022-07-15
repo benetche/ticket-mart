@@ -4,20 +4,18 @@ import { getCurrentRoute, redirectToFrom, VisitorType } from './routes';
 import { withSessionSsr } from './withSession';
 import url from 'url';
 
-export interface BasicUserInfoSSR {
-  user: IronSessionData['user'] | { type: string };
-}
+export type BasicUserInfoSSR = Partial<IronSessionData['user']> & {
+  type: string;
+};
 
-export function withUserGuard<P>(
+export function withUserGuard<
+  P extends { [key: string]: unknown } = { [key: string]: unknown }
+>(
   handler?: (
     context: GetServerSidePropsContext
-  ) =>
-    | GetServerSidePropsResult<P & { [key: string]: unknown }>
-    | Promise<GetServerSidePropsResult<P & { [key: string]: unknown }>>
+  ) => GetServerSidePropsResult<P> | Promise<GetServerSidePropsResult<P>>
 ) {
-  return withSessionSsr<
-    ((P & BasicUserInfoSSR) | BasicUserInfoSSR) & { [key: string]: unknown }
-  >(async (context) => {
+  return withSessionSsr<P & BasicUserInfoSSR>(async (context) => {
     const user = context.req.session.user ?? {
       type: 'guest',
     };
@@ -50,7 +48,7 @@ export function withUserGuard<P>(
           props: {
             user,
             ...result.props,
-          },
+          } as unknown as P & BasicUserInfoSSR,
         };
       }
       return result;
@@ -58,7 +56,7 @@ export function withUserGuard<P>(
     return {
       props: {
         user,
-      },
+      } as unknown as P & BasicUserInfoSSR,
     };
   });
 }

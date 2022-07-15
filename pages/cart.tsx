@@ -18,6 +18,7 @@ import { StringifyOptions } from 'querystring';
 import { useState } from 'react';
 import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
 import { CompleteCartItem, getCompleteCartItems } from './api/cart';
+import Link from '../src/components/Link';
 
 interface CartProps {
   cartItems: (CompleteCartItem & { date: string })[];
@@ -373,10 +374,11 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
             >
               Esvaziar Carrinho
             </Button>
-
-            <Button variant="contained" color="secondary">
-              Finalizar Compra
-            </Button>
+            <Link href="/checkout" style={{ textDecoration: 'none' }}>
+              <Button variant="contained" color="secondary">
+                Finalizar Compra
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>

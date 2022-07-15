@@ -1,4 +1,8 @@
 import { Grid, Typography, Paper, Button } from '@mui/material';
+import { withUserGuard } from '../utils/userGuards';
+import Link from '../src/components/Link';
+
+export const getServerSideProps = withUserGuard();
 
 export default function AdminView() {
   return (
@@ -19,19 +23,31 @@ export default function AdminView() {
                 <Typography variant="h5">Eventos</Typography>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="success" fullWidth>
-                  Gerenciar Eventos
-                </Button>
+                <Link
+                  href="/admin/manage-events"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="contained" color="primary" fullWidth>
+                    Gerenciar Eventos
+                  </Button>
+                </Link>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="success" fullWidth>
-                  Adicionar evento
-                </Button>
+                <Link
+                  href="/admin/create-event"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="contained" color="primary" fullWidth>
+                    Adicionar evento
+                  </Button>
+                </Link>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="success" fullWidth>
-                  Explorar Eventos
-                </Button>
+                <Link href="/explore" style={{ textDecoration: 'none' }}>
+                  <Button variant="contained" color="primary" fullWidth>
+                    Explorar Eventos
+                  </Button>
+                </Link>
               </Grid>
             </Grid>
           </Paper>
@@ -43,19 +59,24 @@ export default function AdminView() {
                 <Typography variant="h5">Usuários</Typography>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="success" fullWidth>
-                  Gerenciar Usuários
-                </Button>
+                <Link
+                  href="/admin/manage-users"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="contained" color="primary" fullWidth>
+                    Gerenciar Usuários
+                  </Button>
+                </Link>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="success" fullWidth>
-                  Criar Usuário
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" color="success" fullWidth>
-                  Gerenciar Administradores
-                </Button>
+                <Link
+                  href="/admin/create-user"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="contained" color="primary" fullWidth>
+                    Criar Usuário
+                  </Button>
+                </Link>
               </Grid>
             </Grid>
           </Paper>

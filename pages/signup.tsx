@@ -46,7 +46,7 @@ export default function Signup() {
           message: 'Nova conta criada com sucesso! Faça login para continuar!',
         });
         setTimeout(() => {
-          router.push('/');
+          router.push('/login');
         }, 2000);
       } else {
         throw {
@@ -143,7 +143,7 @@ export default function Signup() {
               </Button>
             </div>
             <div>
-              <Link href="/">
+              <Link href="/login">
                 <Button sx={{ mb: 2, width: '100%' }}>Já sou membro</Button>
               </Link>
             </div>

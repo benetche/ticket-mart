@@ -20,6 +20,7 @@ import { Event as EventModel, IEvent } from '../../src/database/models/Event';
 import { cloudinaryImage } from '../../utils/utils';
 import { useState } from 'react';
 import axios from 'axios';
+import Link from '../../src/components/Link';
 
 interface EventProps {
   event: Omit<IEvent, 'date'> & { date: string };
@@ -52,7 +53,11 @@ export const getServerSideProps = withUserGuard<Omit<EventProps, 'user'>>(
 );
 0;
 
-export default function Event({ event, currentCartQuantity }: EventProps) {
+export default function Event({
+  event,
+  currentCartQuantity,
+  user,
+}: EventProps) {
   interface ModalContent {
     title: string;
     description: string;
@@ -166,6 +171,7 @@ export default function Event({ event, currentCartQuantity }: EventProps) {
               <Grid item>
                 <Button
                   variant="contained"
+                  disabled={user.type === 'guest'}
                   color="primary"
                   onClick={() => addToCart()}
                 >
@@ -214,7 +220,9 @@ export default function Event({ event, currentCartQuantity }: EventProps) {
             </DialogContent>
             <DialogActions>
               {!modalContent?.isError && (
-                <Button href="/cart">Ir para o carrinho</Button>
+                <Link href="/cart" style={{ textDecoration: 'none' }}>
+                  <Button>Ir para o carrinho</Button>
+                </Link>
               )}
               <Button
                 onClick={() => {

@@ -8,6 +8,7 @@ declare module 'iron-session' {
       email: string;
       name: string;
       type: string;
+      phone?: string;
     };
     cart?: {
       [eventId: string]: {

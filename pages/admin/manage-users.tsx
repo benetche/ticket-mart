@@ -19,6 +19,14 @@ import {
 } from '@mui/material';
 import { SearchOutlined } from '@mui/icons-material';
 import React from 'react';
+import { BasicUserInfoSSR, withUserGuard } from '../../utils/userGuards';
+import { IUser, User } from '../../src/database/models/User';
+import { connectToDatabase } from '../../src/database/conn';
+
+interface ManageUsersProps {
+  users: IUser[];
+  user: BasicUserInfoSSR;
+}
 
 const UserName = styled(Typography)(() => ({
   fontWeight: 'bold',
@@ -26,6 +34,20 @@ const UserName = styled(Typography)(() => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 }));
+
+export const getServerSideProps = withUserGuard<Omit<ManageUsersProps, 'user'>>(
+  async (ctx) => {
+    await connectToDatabase();
+    const users = await User.find({
+      email: { $ne: ctx.req.session.user?.email },
+    }).sort({ name: 1 });
+    return {
+      props: {
+        users: JSON.parse(JSON.stringify(users)) as IUser[],
+      },
+    };
+  }
+);
 
 const UserCard = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -147,7 +169,10 @@ const UserCard = () => {
   );
 };
 
-export default function ManageUsers() {
+export default function ManageUsers({ users }: ManageUsersProps) {
+  const [search, setSearch] = React.useState('');
+  const [currUsers, setCurrUsers] = React.useState(users);
+
   return (
     <Grid container flex={1} p={4} direction="column">
       <Grid container direction="row" spacing={2}>
@@ -177,14 +202,15 @@ export default function ManageUsers() {
           <Button
             sx={{ height: '100%', width: '100%', fontSize: '1.1rem' }}
             variant="contained"
-            color="success"
+            color="secondary"
           >
             Buscar
           </Button>
         </Grid>
-        {/* <EventContainer/> */}
         <Grid item sm={2}>
-          <UserCard></UserCard>
+          {currUsers.map((user) => (
+            <UserCard key={user._id.toString()} />
+          ))}
         </Grid>
       </Grid>
     </Grid>

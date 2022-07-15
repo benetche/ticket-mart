@@ -1,15 +1,19 @@
 import mongoose, { Document, model, Model, Schema } from 'mongoose';
 import mongooseUniqueValidator from 'mongoose-unique-validator';
 import bcrypt from 'bcrypt';
+import { ITicket } from './Ticket';
 const SALT_WORK_FACTOR = 10;
 
 export type UserType = 'admin' | 'user';
 
 export interface IUser extends Document {
+  _id: mongoose.Types.ObjectId;
   email: string;
   name: string;
   password: string;
+  phone?: string;
   type: UserType;
+  tickets?: ITicket[] | mongoose.Types.ObjectId[];
   validatePassword(candidatePassword: string): Promise<boolean>;
 }
 
@@ -46,6 +50,16 @@ const UserSchema: Schema = new Schema({
     default: 'user',
     required: true,
   },
+  phone: {
+    type: String,
+  },
+  tickets: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Ticket',
+      select: false,
+    },
+  ],
 });
 
 UserSchema.pre('save', async function (next) {

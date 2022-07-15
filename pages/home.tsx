@@ -1,35 +1,101 @@
 import { Grid, Card, CardMedia, Typography, Button } from '@mui/material';
-import { withUserGuard } from '../utils/userGuards';
+import EventCard from '../src/components/EventCard';
+import { connectToDatabase } from '../src/database/conn';
+import { IEvent, Event } from '../src/database/models/Event';
+import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
+import Carousel from 'react-material-ui-carousel';
+import { cloudinaryImage } from '../utils/utils';
+import Link from '../src/components/Link';
 
-export const getServerSideProps = withUserGuard();
+export interface HomeProps {
+  events: (Omit<IEvent, 'date'> & { date: string })[];
+  user: BasicUserInfoSSR;
+}
 
-export default function Home() {
+export const getServerSideProps = withUserGuard<{
+  events: HomeProps['events'];
+}>(async (_ctx) => {
+  await connectToDatabase();
+
+  const events = await Event.find()
+    .gt('stockQuantity', 0)
+    .gt('date', new Date())
+    .sort({ date: -1 })
+    .limit(3);
+  return {
+    props: {
+      events: JSON.parse(JSON.stringify(events)) as HomeProps['events'],
+    },
+  };
+});
+
+function NonSelectableImage(props: any) {
   return (
-    <Grid
-      direction="column"
-      flex={1}
-      spacing={4}
-      sx={{ mt: { sm: 4, xs: 6 }, m: { xs: 4 } }}
-    >
-      <Grid item sm={12}>
-        <Card>
-          <CardMedia
-            component="img"
-            alt="slider"
-            image="https://res.cloudinary.com/htkavmx5a/image/upload/c_scale,f_auto,h_348,q_auto/nnckiy0znnljhgc6tely"
-          ></CardMedia>
-        </Card>
-      </Grid>
-      <Grid item sx={{ textAlign: 'center' }} m={4}>
-        <Typography variant="h5" fontWeight="bold">
-          Principais Eventos
-        </Typography>
-      </Grid>
-      <Grid container direction="row" spacing={2}></Grid>
-      <Grid item textAlign="center" m={4}>
-        <Button variant="contained" color="success" fullWidth>
-          Explorar Eventos
-        </Button>
+    <div
+      {...props}
+      style={{
+        ...props.style,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: `${props.height}px`,
+        width: '100%',
+      }}
+    />
+  );
+}
+
+export default function Home({ events }: HomeProps) {
+  return (
+    <Grid container direction="row" justifyContent="center">
+      <Grid
+        md={10}
+        sm={11}
+        xs={12}
+        lg={8}
+        item
+        container
+        direction="column"
+        justifyContent="center"
+        // spacing={2}
+        sx={{ mt: { sm: 4, xs: 6 }, m: { xs: 4 } }}
+      >
+        <Grid item>
+          <Carousel height={150}>
+            {events.map((event) => (
+              <Card key={event._id.toString()}>
+                <CardMedia
+                  height={150}
+                  component={NonSelectableImage}
+                  alt={event.name}
+                  image={cloudinaryImage(event.imageUrl)}
+                ></CardMedia>
+              </Card>
+            ))}
+          </Carousel>
+        </Grid>
+        <Grid item sx={{ textAlign: 'center' }} m={4}>
+          <Typography variant="h5" fontWeight="bold">
+            Principais Eventos
+          </Typography>
+        </Grid>
+        <Grid container direction="row" spacing={2}>
+          {events.map((event) => (
+            <Grid item sm={4} xs={12} key={event._id.toString()}>
+              <EventCard event={event} />
+            </Grid>
+          ))}
+        </Grid>
+        <Grid item textAlign="center" m={4}>
+          <Link href="/explore" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{ width: '20rem' }}
+            >
+              Todos os Eventos
+            </Button>
+          </Link>
+        </Grid>
       </Grid>
     </Grid>
   );

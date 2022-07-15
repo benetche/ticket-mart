@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import { IEvent } from '../database/models/Event';
+import Link from './Link';
 
 interface EventCardProps {
   event: Omit<IEvent, 'date'> & { date: string };
@@ -45,9 +46,11 @@ export default function EventCard({ event }: EventCardProps) {
         </Typography>
       </CardContent>
       <CardActions style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button variant="outlined" color="primary" href={`/event/${event._id}`}>
-          Acessar evento
-        </Button>
+        <Link href={`/event/${event._id}`} style={{ textDecoration: 'none' }}>
+          <Button variant="outlined" color="primary">
+            Acessar evento
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );

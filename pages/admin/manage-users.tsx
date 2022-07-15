@@ -9,8 +9,10 @@ import {
   styled,
   Menu,
   MenuItem,
-  Modal,
-  Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   Switch,
   FormGroup,
   FormControlLabel,
@@ -92,34 +94,28 @@ const UserCard = () => {
           </Menu>
         </Grid>
       </Grid>
-      <Modal open={openModal} onClose={handleModalClose}>
-        <Box sx={modalStyle}>
-          <Grid direction="row" container>
-            <Grid item sm={6} xs={6}>
-              <Typography variant="h5">Detalhes</Typography>
-            </Grid>
-            <Grid item sm={6} xs={6}>
+      <Dialog open={openModal} onClose={handleModalClose}>
+        <DialogTitle>
+          <Typography variant="h5">Detalhes</Typography>
+        </DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2} direction="column">
+            <Grid item>
               <FormGroup>
                 <FormControlLabel
                   control={
-                    <Switch
-                      color="info"
-                      onChange={() => {
-                        setEdit(!edit);
-                      }}
-                    />
+                    <Switch color="info" onChange={() => setEdit(!edit)} />
                   }
                   label="Editar"
-                />
+                ></FormControlLabel>
               </FormGroup>
             </Grid>
-          </Grid>
-          <Grid direction="column" container sx={{ mt: 2 }} spacing={2}>
             <Grid item>
               <TextField
                 disabled={!edit}
-                label="Nome do Usuário"
-                value="teste"
+                type="text"
+                label="Nome"
+                value="Nome teste"
                 InputLabelProps={{ shrink: true }}
                 fullWidth
               />
@@ -127,6 +123,7 @@ const UserCard = () => {
             <Grid item>
               <TextField
                 disabled={!edit}
+                type="email"
                 label="Email"
                 value="teste@teste"
                 InputLabelProps={{ shrink: true }}
@@ -136,8 +133,9 @@ const UserCard = () => {
             <Grid item>
               <TextField
                 disabled={!edit}
+                type="password"
                 label="Email"
-                value="teste@teste"
+                value="********"
                 InputLabelProps={{ shrink: true }}
                 fullWidth
               />
@@ -147,17 +145,17 @@ const UserCard = () => {
                 <FormControlLabel
                   control={<Switch color="info" disabled={!edit} />}
                   label="Admin"
-                />
+                ></FormControlLabel>
               </FormGroup>
             </Grid>
-            <Grid item>
-              <Button variant="contained" color="success">
-                Concluir
-              </Button>
-            </Grid>
           </Grid>
-        </Box>
-      </Modal>
+        </DialogContent>
+        <DialogActions sx={{ m: 2 }}>
+          <Button color="info" variant="contained">
+            Concluir
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 };

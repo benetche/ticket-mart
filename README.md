@@ -16,11 +16,11 @@
 
 - Customers are users who access the system to buy event tickets.
 
-- Each event admin record includes, at least: name, id, phone, email, address, CPF/CNPJ, banking info and photo.
+- Each event admin record includes, at least: name, id, phone, email and password.
 
-- Each customer's record includes, at least: name, id, phone, email, CPF, birth date and photo.
+- Each customer's record includes, at least: name, id, phone, email and password.
 
-- Event records include, at least: name, id, photo, description, price, quantity (in stock), quantity sold, location, date, attractions and age limit.
+- Event records include, at least: name, id, photo, description, price, quantity (in stock), location, date.
 
 - Selling Event Tickets: Events are selected, their quantity chosen, and are included in a cart. Tickets are purchased using a credit card number (any number is accepted by the system). The quantity of ticket sold is subtracted from the quantity in stock and added to the quantity sold. Carts are emptied only on payment or by customers.
 
@@ -28,21 +28,22 @@
 
 - Customers must be able to transfer ticket between accounts (Specific Functionality).
 
+- Each Ticket from an Event Purchase generates a custom QR Code containing the ticket information. This QR Code is used to validate the ticket.
+  (Specific Functionality)
+
 - The system must provide accessibility requirements and provide good usability.
 
 - The system must be responsive.
 
 ## 2. Project Description:
 
-**Tik.me** is a web application that allows users to find and buy tickets for events, besides that users can exchange tickets between accounts. Event Administrators can create and manage their events.
+[**Tik.me**](https://tik-me-tmp.vercel.app/) is a web application that allows users to find and buy tickets for events, besides that users can exchange tickets between accounts. Event Administrators can create and manage their events.
 
 The system will be developed using Next.js and MongoDB.
 
 ### 2.1 System Mockups:
 
-The three main mockups made with Next.js are available at [tik-me-tmp.vercel.app](https://tik-me-tmp.vercel.app/). Source Code for them can be found at the root of the repository.
-
-The remaining system mockups are available at [Figma](https://www.figma.com/file/e6l1Ek7bTZZzTFtO5qVqpu/Ticket-Mart)
+System mockups are available at [Figma](https://www.figma.com/file/e6l1Ek7bTZZzTFtO5qVqpu/Ticket-Mart)
 
 ### 2.2 Navigation Diagram:
 
@@ -96,10 +97,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - ID
 - Phone
 - Email
-- Address
-- CPF/CNPJ
-- Banking Info
-- Photo
+- Password
 
 #### 2.4.2 Customer Information:
 
@@ -107,9 +105,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - ID
 - Phone
 - Email
-- CPF
-- Photo
-- Birth Date
+- Password
 
 #### 2.4.3 Event Information:
 
@@ -119,11 +115,8 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - Description
 - Price
 - Quantity in Stock
-- Quantity Sold
 - Location
 - Date
-- Attractions
-- Age Limit
 
 #### 2.4.4 Purchase Information:
 
@@ -150,21 +143,31 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 
 ## 3. Comments About the Code:
 
-Source code to the three mockup pages is available at the root of the repository.
+Source code to the full system is available at the root of the repository.
 
 The pages are available in the `pages` folder.
-The Header component is available in the `components` folder.
+
+The API routes are available in the `pages/api` folder.
+
+The database logic is available in the `src/database` folder.
+
+The Header component is available in the `src/components` folder.
+
 The styles are available in the `styles` folder.
 
 ## 4. Test Plan:
 
-For the first milestone, no tests were made. In the future tests will be made to ensure the system is working properly.
+Manual Tests were made to verify if the system works as expected.
 
 ## 5. Test Results:
 
 For the first milestone, no tests were made.
 
 ## 6. Build Procedures:
+
+The system is also available at [tik-me-tmp.vercel.app](https://tik-me-tmp.vercel.app/).
+
+First, the proper `.env` file is needed to run the project. Contact the project owner to get the proper file and place it in the root of the project.
 
 To build the project, run the following commands:
 
@@ -182,18 +185,22 @@ npm run dev
 
 ## 7. Problems:
 
-No major problems found in the first milestone.
+Besides the fact that the project is huge itself, no major problems were found.
 
 ## 8. Comments:
 
 No comments for the first milestone.
+
 No comments for the second milestone.
+
 No comments for the final milestone.
 
 ## 9. Reviews:
 
-As part of this project the group has to peer-review another group's work after each milestone.  
+As part of this project the group has to peer-review another group's work after each milestone.
 
-Review 1 - Group 24: https://docs.google.com/document/d/1J8ZI91HjP8c0YY5oTa11FD-RqorYXFPoMAepZjZfodc/edit?usp=sharing
-Review 2 - Group 24: https://docs.google.com/document/d/1GAFoPBWE2-Xz77N8IMBggatpk-W1NkyVBVKCALA6nwk/edit?usp=sharing
-Review 3 - Group 24: https://docs.google.com/document/d/1mB5aF2y17tPV_sfN0P-C1foOql2blTEcTCBV-bBReKw/edit?usp=sharing
+[Review 1 - Group 24](https://docs.google.com/document/d/1J8ZI91HjP8c0YY5oTa11FD-RqorYXFPoMAepZjZfodc/edit?usp=sharing)
+
+[Review 2 - Group 24](https://docs.google.com/document/d/1GAFoPBWE2-Xz77N8IMBggatpk-W1NkyVBVKCALA6nwk/edit?usp=sharing)
+
+[Review 3 - Group 24](https://docs.google.com/document/d/1mB5aF2y17tPV_sfN0P-C1foOql2blTEcTCBV-bBReKw/edit?usp=sharing)

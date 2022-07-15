@@ -25,6 +25,8 @@ export default function MyApp(props: MyAppProps) {
     <CacheProvider value={emotionCache}>
       <Head>
         <title>{titleFromRoute('Tik.me', router.route)}</title>
+        <meta charSet="utf-8" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>

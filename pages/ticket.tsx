@@ -93,6 +93,7 @@ export default function Ticket() {
                     style={{ marginTop: '10px' }}
                     placeholder="Cpf do Destinatario"
                     fullWidth
+                    inputProps={{ maxLength: 10 }}
                   ></TextField>
                   <Button
                     variant="contained"

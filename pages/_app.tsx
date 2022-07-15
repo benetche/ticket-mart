@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import Layout from '../src/components/Layout';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import './Styles/fonts.css';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

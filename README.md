@@ -10,15 +10,11 @@
 
 ## 1. Requirements:
 
-- The system must have 3 types of users: Clients, Event Administrators (Sellers) and Super Admins.
-
-- Super Admins are responsible for registering/managing super admins, event administrators, customers, and events. The application already comes with a super admin account admin with password admin.
+- The system must have 2 types of users: Clients, Event Administrators (Sellers).
 
 - Event Administrators are responsible for registering events and managing events created by them.
 
 - Customers are users who access the system to buy event tickets.
-
-- The super admin record includes, at least: name, id, phone, email.
 
 - Each event admin record includes, at least: name, id, phone, email, address, CPF/CNPJ, banking info and photo.
 
@@ -28,7 +24,7 @@
 
 - Selling Event Tickets: Events are selected, their quantity chosen, and are included in a cart. Tickets are purchased using a credit card number (any number is accepted by the system). The quantity of ticket sold is subtracted from the quantity in stock and added to the quantity sold. Carts are emptied only on payment or by customers.
 
-- Event Management: Event Administrators can create/update/read/delete (crud) new events. For example, they can change the stock quantity.
+- Event Management: Event Administrators can create/update/read/delete (crud) new events. For example, they can change the quantity in stock.
 
 - Customers must be able to transfer ticket between accounts (Specific Functionality).
 
@@ -38,11 +34,9 @@
 
 ## 2. Project Description:
 
-**Tik.me** is a web application that allows users to find and buy tickets for events, besides that users can exchange tickets between accounts. Event Administrators can create and manage their events. Super Admins can create and manage other users and any events.
+**Tik.me** is a web application that allows users to find and buy tickets for events, besides that users can exchange tickets between accounts. Event Administrators can create and manage their events.
 
 The system will be developed using Next.js and MongoDB.
-
-To the moment the system is still in development and is not fully functional. What is available are mockups of the application made using Figma and three incipient mockup pages built with Next.js.
 
 ### 2.1 System Mockups:
 
@@ -64,24 +58,13 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 
 ![Event Admin Diagram](assets/navSeller.png)
 
-#### 2.2.4 Super Admin Diagram:
+#### 2.2.4 Admin Diagram:
 
 ![Super Admin Diagram](assets/navAdmin.png)
 
 ### 2.3 System Functionalities:
 
-#### 2.3.1 Super Admin Functionalities:
-
-- Manage Event Administrators
-- Manage Customers
-- Manage Events
-- Manage Super Admins
-- Change Profile Info
-- Change Password
-- Login
-- Logout
-
-#### 2.3.2 Event Administrator Functionalities:
+#### 2.3.1 Event Administrator Functionalities:
 
 - Create Event
 - Update Event
@@ -92,7 +75,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - Login
 - Logout
 
-#### 2.3.3 Customer Functionalities:
+#### 2.3.2 Customer Functionalities:
 
 - Search Events
 - Add Event to Cart
@@ -107,14 +90,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 
 ### 2.4 Information Saved by the System:
 
-#### 2.4.1 Super Admin Information:
-
-- Name
-- ID
-- Phone
-- Email
-
-#### 2.4.2 Event Administrator Information:
+#### 2.4.1 Event Administrator Information:
 
 - Name
 - ID
@@ -125,7 +101,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - Banking Info
 - Photo
 
-#### 2.4.3 Customer Information:
+#### 2.4.2 Customer Information:
 
 - Name
 - ID
@@ -135,7 +111,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - Photo
 - Birth Date
 
-#### 2.4.4 Event Information:
+#### 2.4.3 Event Information:
 
 - Name
 - ID
@@ -149,7 +125,7 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - Attractions
 - Age Limit
 
-#### 2.4.5 Purchase Information:
+#### 2.4.4 Purchase Information:
 
 - Cart Snapshot
 - ID
@@ -159,14 +135,14 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 - Number of Tickets
 - Tickets
 
-#### 2.4.6 Transfer Information:
+#### 2.4.5 Transfer Information:
 
 - ID
 - Source Account
 - Destination Account
 - Ticket ID
 
-#### 2.4.7 Ticket Information:
+#### 2.4.6 Ticket Information:
 
 - ID
 - Event
@@ -176,18 +152,17 @@ The remaining system mockups are available at [Figma](https://www.figma.com/file
 
 Source code to the three mockup pages is available at the root of the repository.
 
-The pages are available at the folder `pages`.
-The Header component is available at the folder `components`.
-The styles are available at the folder `styles`.
+The pages are available in the `pages` folder.
+The Header component is available in the `components` folder.
+The styles are available in the `styles` folder.
 
 ## 4. Test Plan:
 
 For the first milestone, no tests were made. In the future tests will be made to ensure the system is working properly.
-For the second milestone, only manual tests were performed checking the frontend.
 
 ## 5. Test Results:
 
-All tests produced the expected results.
+For the first milestone, no tests were made.
 
 ## 6. Build Procedures:
 
@@ -212,10 +187,13 @@ No major problems found in the first milestone.
 ## 8. Comments:
 
 No comments for the first milestone.
+No comments for the second milestone.
+No comments for the final milestone.
 
 ## 9. Reviews:
 
 As part of this project the group has to peer-review another group's work after each milestone.  
 
 Review 1 - Group 24: https://docs.google.com/document/d/1J8ZI91HjP8c0YY5oTa11FD-RqorYXFPoMAepZjZfodc/edit?usp=sharing
-Review 2 - https://docs.google.com/document/d/1GAFoPBWE2-Xz77N8IMBggatpk-W1NkyVBVKCALA6nwk/edit?usp=sharing
+Review 2 - Group 24: https://docs.google.com/document/d/1GAFoPBWE2-Xz77N8IMBggatpk-W1NkyVBVKCALA6nwk/edit?usp=sharing
+Review 3 - Group 24: https://docs.google.com/document/d/1mB5aF2y17tPV_sfN0P-C1foOql2blTEcTCBV-bBReKw/edit?usp=sharing

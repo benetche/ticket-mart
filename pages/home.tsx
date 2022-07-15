@@ -4,7 +4,6 @@ import { connectToDatabase } from '../src/database/conn';
 import { IEvent, Event } from '../src/database/models/Event';
 import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
 import Carousel from 'react-material-ui-carousel';
-import { cloudinaryImage } from '../utils/utils';
 import Link from '../src/components/Link';
 
 export interface HomeProps {
@@ -60,14 +59,14 @@ export default function Home({ events }: HomeProps) {
         sx={{ mt: { sm: 4, xs: 6 }, m: { xs: 4 } }}
       >
         <Grid item>
-          <Carousel height={150}>
+          <Carousel height={400}>
             {events.map((event) => (
               <Card key={event._id.toString()}>
                 <CardMedia
-                  height={150}
+                  height={400}
                   component={NonSelectableImage}
                   alt={event.name}
-                  image={cloudinaryImage(event.imageUrl)}
+                  image={event.imageUrl}
                 ></CardMedia>
               </Card>
             ))}

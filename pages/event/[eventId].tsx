@@ -17,7 +17,6 @@ import { colorPallete } from '../../src/theme';
 import { BasicUserInfoSSR, withUserGuard } from '../../utils/userGuards';
 import { connectToDatabase } from '../../src/database/conn';
 import { Event as EventModel, IEvent } from '../../src/database/models/Event';
-import { cloudinaryImage } from '../../utils/utils';
 import { useState } from 'react';
 import axios from 'axios';
 import Link from '../../src/components/Link';
@@ -121,7 +120,7 @@ export default function Event({
           <CardMedia
             sx={{ marginBottom: '10px', borderRadius: '8px', height: '300px' }}
             component="img"
-            image={cloudinaryImage(event.imageUrl)}
+            image={event.imageUrl}
             alt="Banner do Evento"
           />
 

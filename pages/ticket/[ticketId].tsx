@@ -23,7 +23,6 @@ import { ITicketFull } from '../../src/database/models/Ticket';
 import { isValidObjectId } from 'mongoose';
 import { getTicketInfo } from '../api/ticket';
 import { BasicUserInfoSSR, withUserGuard } from '../../utils/userGuards';
-import { cloudinaryImage } from '../../utils/utils';
 import { useQRCode } from 'next-qrcode';
 import { isValidEmail } from '../../utils/validate';
 import axios from 'axios';
@@ -197,7 +196,7 @@ export default function Ticket({ ticket, user }: TicketProps) {
               <CardMedia
                 component="img"
                 height="300"
-                image={cloudinaryImage(ticket.event.imageUrl)}
+                image={ticket.event.imageUrl}
                 alt="Banner do Evento"
               />
             </Card>

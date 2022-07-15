@@ -10,7 +10,6 @@ import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
 import { SentimentVeryDissatisfied } from '@mui/icons-material';
 import { getAllUserTickets } from './api/ticket';
 import { ITicketFull } from '../src/database/models/Ticket';
-import { cloudinaryImage } from '../utils/utils';
 import Link from '../src/components/Link';
 interface MyTicketsProps {
   user: BasicUserInfoSSR;
@@ -43,7 +42,7 @@ function EventTicket({ ticket }: { ticket: ITicketFull }) {
       <CardMedia
         component="img"
         height="100"
-        image={cloudinaryImage(ticket.event.imageUrl)}
+        image={ticket.event.imageUrl}
         alt="Banner do Evento"
       />
       <CardContent>

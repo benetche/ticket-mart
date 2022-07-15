@@ -54,7 +54,7 @@ export default function ManageEvents() {
           <Button
             sx={{ height: '100%', width: '100%', fontSize: '1.1rem' }}
             variant="contained"
-            color="secondary"
+            color="success"
           >
             Buscar
           </Button>

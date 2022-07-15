@@ -8,6 +8,8 @@ import createEmotionCache from '../src/createEmotionCache';
 import { titleFromRoute } from '../utils/routes';
 import { useRouter } from 'next/router';
 import Layout from '../src/components/Layout';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -29,7 +31,9 @@ export default function MyApp(props: MyAppProps) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <Layout user={pageProps?.user}>
-          <Component {...pageProps} />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Component {...pageProps} />
+          </LocalizationProvider>
         </Layout>
       </ThemeProvider>
     </CacheProvider>

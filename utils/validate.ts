@@ -75,3 +75,12 @@ export function isValidCPF(value: unknown): value is string {
   }
   return true;
 }
+
+export function isValidURL(value: unknown): value is string {
+  return (
+    isValidString(value) &&
+    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
+      value
+    )
+  );
+}

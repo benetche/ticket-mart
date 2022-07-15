@@ -124,7 +124,7 @@ export default function UserPage({ user }: UserPageProps) {
         setSubmitted(true);
 
         setTimeout(() => {
-          router.push('/');
+          router.reload();
         }, 2000);
       } else {
         throw {

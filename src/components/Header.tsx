@@ -55,8 +55,6 @@ const NotActiveMenuButtonLink = styled(MenuButtonLink)(({ theme }) => ({
 export default function Header({ user }: HeaderProps) {
   const userType = user?.type ?? 'guest';
 
-  console.log(user);
-
   const contextRoutes: typeof routes = Object.fromEntries(
     Object.entries(routes).filter(
       ([, { validUserTypes, type }]) =>

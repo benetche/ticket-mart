@@ -1,4 +1,5 @@
 import mongoose, { Document, model, Model, Schema } from 'mongoose';
+import { isValidURL } from '../../../utils/validate';
 
 export interface IEvent extends Document {
   _id: mongoose.Types.ObjectId;
@@ -38,6 +39,12 @@ const EventSchema: Schema = new Schema({
   },
   imageUrl: {
     type: String,
+    validate: {
+      validator: (url: string) => {
+        return isValidURL(url);
+      },
+      message: (props: any) => `${props.value} não é uma URL válida!`,
+    },
     default:
       'https://res.cloudinary.com/rolimans/image/upload/v1657688561/eventImages/genericParty.jpg',
   },

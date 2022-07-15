@@ -20,7 +20,7 @@ export const getServerSideProps = withUserGuard<{
   const events = await Event.find()
     .gt('stockQuantity', 0)
     .gt('date', new Date())
-    .sort({ date: -1 })
+    .sort({ date: 1 })
     .limit(3);
   return {
     props: {

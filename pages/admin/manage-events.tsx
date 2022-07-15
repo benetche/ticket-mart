@@ -56,7 +56,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
             <Typography>Total vendido: </Typography>
             <Typography fontWeight="bold">x</Typography>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} xs={12}>
             <TextField
               disabled={!edit}
               type="text"
@@ -66,7 +66,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
               fullWidth
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} xs={12}>
             <TextField
               disabled={!edit}
               type="date"
@@ -75,7 +75,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
               fullWidth
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} xs={12}>
             <TextField
               disabled={!edit}
               type="text"
@@ -85,7 +85,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
               fullWidth
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} xs={12}>
             <TextField
               disabled={!edit}
               label="Valor do Ingresso"
@@ -100,7 +100,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
               }}
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} xs={12}>
             <TextField
               disabled={!edit}
               type="number"
@@ -110,7 +110,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
               fullWidth
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item sm={6} xs={12}>
             <TextField
               disabled={!edit}
               type="text"
@@ -120,7 +120,7 @@ const EventDetails = ({ openModal, setOpenModal }) => {
               fullWidth
             />
           </Grid>
-          <Grid item sm={12}>
+          <Grid item sm={12} xs={12}>
             <TextField
               disabled={!edit}
               label="Descrição do Evento"

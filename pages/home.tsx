@@ -4,7 +4,6 @@ import { connectToDatabase } from '../src/database/conn';
 import { IEvent, Event } from '../src/database/models/Event';
 import { BasicUserInfoSSR, withUserGuard } from '../utils/userGuards';
 import Carousel from 'react-material-ui-carousel';
-import { cloudinaryImage } from '../utils/utils';
 import Link from '../src/components/Link';
 
 export interface HomeProps {
@@ -68,7 +67,7 @@ export default function Home({ events }: HomeProps) {
                   height={250}
                   component={NonSelectableImage}
                   alt={event.name}
-                  image={cloudinaryImage(event.imageUrl)}
+                  image={event.imageUrl}
                 ></CardMedia>
               </Card>
             ))}

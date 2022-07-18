@@ -4,11 +4,9 @@ import {
   Home,
   ShoppingCartOutlined,
   LoginOutlined,
-  HelpCenterOutlined,
   ConfirmationNumberOutlined,
   HomeOutlined,
   SearchOutlined,
-  PublishOutlined,
   LogoutOutlined,
   PersonAddOutlined,
   AccountCircleOutlined,
@@ -85,6 +83,7 @@ export const routes: Record<string, TRoute> = {
     validUserTypes: ['admin'],
   },
   '/logout': {
+    // In production a loading animation should be shown while logging out
     label: 'Logout',
     type: 'secondary',
     icon: <LogoutOutlined />,

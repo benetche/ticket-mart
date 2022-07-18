@@ -57,14 +57,15 @@ export default function Home({ events }: HomeProps) {
         direction="column"
         justifyContent="center"
         // spacing={2}
-        sx={{ mt: { sm: 4, xs: 6 }, m: { xs: 4 } }}
+        p={2}
+        sx={{ mt: 4 }}
       >
-        <Grid item>
-          <Carousel height={150}>
+        <Grid width={'100%'} item>
+          <Carousel height={250}>
             {events.map((event) => (
               <Card key={event._id.toString()}>
                 <CardMedia
-                  height={150}
+                  height={250}
                   component={NonSelectableImage}
                   alt={event.name}
                   image={cloudinaryImage(event.imageUrl)}

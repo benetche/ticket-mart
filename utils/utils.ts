@@ -1,4 +1,4 @@
-import { buildImageUrl } from 'cloudinary-build-url';
+// import { buildImageUrl } from 'cloudinary-build-url';
 
 export function normalizeStr(str: string): string {
   return str
@@ -16,16 +16,18 @@ export function cloudinaryImage(
     type,
   }: { width?: number; height?: number; type?: string } = {}
 ): string {
-  return buildImageUrl(url, {
-    cloud: {
-      cloudName: 'rolimans',
-    },
-    transformations: {
-      width,
-      height,
-      type,
-    },
-  });
+  return url;
+  // In a production environment, with cloudinary upload, you would want to use the following code:
+  // return buildImageUrl(url, {
+  //   cloud: {
+  //     cloudName: 'rolimans',
+  //   },
+  //   transformations: {
+  //     width,
+  //     height,
+  //     type,
+  //   },
+  // });
 }
 
 export function range(start: number, end: number): number[] {

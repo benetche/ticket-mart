@@ -366,7 +366,7 @@ export default function Cart({ cartItems: initialCartItems }: CartProps) {
               onClick={() => {
                 deleteAll();
               }}
-              sx={{ mr: { md: 2 } }}
+              sx={{ mr: { md: 2 }, mb: { xs: 2 } }}
               variant="outlined"
               color="error"
             >
